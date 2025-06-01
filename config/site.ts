@@ -12,7 +12,7 @@ export const siteConfig = {
   ],
   links: {
     twitter: "https://twitter.com/degenvision", // update if you have a real handle
-    github: "https://github.com/your-username/degenvision", // update as needed
+    github: "https://github.com/M4N4N22/degenvision", // update as needed
     docs: "https://docs.degenvision.com", // or your own docs if you host them
   },
 }

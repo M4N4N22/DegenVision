@@ -98,14 +98,14 @@ const Leaderboard = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="relative min-h-screen bg-background">
       {/* Background elements */}
       <div className="absolute inset-0">
-        <div className="animate-pulse-slow absolute left-1/4 top-1/4 size-96 rounded-full bg-yellow-500/10 blur-3xl"></div>
-        <div className="animate-pulse-slow absolute bottom-1/4 right-1/4 size-96 rounded-full bg-purple-500/10 blur-3xl" style={{animationDelay: '2s'}}></div>
+        <div className="animate-pulse-slow absolute left-1/4 top-1/4 size-96 rounded-full bg-green-500/10 blur-3xl"></div>
+        <div className="animate-pulse-slow absolute bottom-1/4 right-1/4 size-96 rounded-full bg-sky-500/10 blur-3xl" style={{animationDelay: '2s'}}></div>
       </div>
 
-      <div className="container relative z-10 mx-auto px-6 py-20">
+      <div className="container relative z-10 mx-auto p-6">
         <div className="mb-12 text-center">
           <div className="glass-card mb-6 inline-flex items-center gap-2 rounded-full px-4 py-2">
             <Trophy className="size-4 text-yellow-400" />
@@ -113,7 +113,7 @@ const Leaderboard = () => {
           </div>
           
           <h1 className="mb-4 text-5xl font-bold md:text-6xl">
-            <span className="gradient-text">Alpha Leaderboard</span>
+            <span className="gradient-text">DegenVision <span className="text-white/50">Leaderboard</span></span>
           </h1>
           <p className="mx-auto max-w-2xl text-xl text-gray-300">
             Top strategic predictors ranked by accuracy and alpha tokens earned
@@ -124,7 +124,7 @@ const Leaderboard = () => {
           {/* Top 3 Podium */}
           <div className="mb-12 grid gap-6 md:grid-cols-3">
             {leaderboardData.slice(0, 3).map((entry, index) => (
-              <div key={entry.rank} className={`glass-card rounded-2xl p-6 ${getRankGlow(entry.rank)} order-${index === 0 ? '2' : index === 1 ? '1' : '3'} md:order-none`}>
+              <div key={entry.rank} className={`glass-card  p-6 ${getRankGlow(entry.rank)} order-${index === 0 ? '2' : index === 1 ? '1' : '3'} md:order-none`}>
                 <div className="text-center">
                   <div className="mb-4">
                     {getRankIcon(entry.rank)}
