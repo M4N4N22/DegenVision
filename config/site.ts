@@ -1,9 +1,9 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "Next.js",
+  name: "DegenVision",
   description:
-    "Beautifully designed components built with Radix UI and Tailwind CSS.",
+    "A strategic prediction platform with beautifully designed components built using Tailwind CSS and Radix UI.",
   mainNav: [
     {
       title: "Home",
@@ -11,8 +11,8 @@ export const siteConfig = {
     },
   ],
   links: {
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn/ui",
-    docs: "https://ui.shadcn.com",
+    twitter: "https://twitter.com/degenvision", // update if you have a real handle
+    github: "https://github.com/your-username/degenvision", // update as needed
+    docs: "https://docs.degenvision.com", // or your own docs if you host them
   },
 }

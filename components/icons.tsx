@@ -3,8 +3,10 @@ import {
   Moon,
   SunMedium,
   Twitter,
-  type Icon as LucideIcon,
+  Icon,
 } from "lucide-react"
+
+export type LucideIcon = typeof Icon
 
 export type Icon = LucideIcon
 
