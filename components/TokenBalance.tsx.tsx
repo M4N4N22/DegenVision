@@ -10,8 +10,8 @@ const TokenBalance = () => {
   const winRate = 72;
 
   return (
-    <div className="glass-card p-6 rounded-2xl">
-      <div className="flex items-center justify-between mb-6">
+    <div className="glass-card rounded-2xl p-6">
+      <div className="mb-6 flex items-center justify-between">
         <h2 className="text-xl font-bold text-white">Your Alpha Score</h2>
         <Badge variant="outline" className="border-gold-500/20 bg-yellow-500/10 text-yellow-400">
           Elite Trader
@@ -19,27 +19,27 @@ const TokenBalance = () => {
       </div>
 
       {/* Main Balance */}
-      <div className="text-center mb-8">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <Coins className="w-8 h-8 text-yellow-400" />
-          <span className="text-4xl font-bold gradient-text">{balance.toLocaleString()}</span>
+      <div className="mb-8 text-center">
+        <div className="mb-2 flex items-center justify-center gap-2">
+          <Coins className="size-8 text-yellow-400" />
+          <span className="gradient-text text-4xl font-bold">{balance.toLocaleString()}</span>
         </div>
         <p className="text-gray-400">Total Alpha Tokens</p>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-2 gap-4 mb-6">
-        <div className="glass p-4 rounded-xl text-center">
-          <div className="flex items-center justify-center gap-1 mb-1">
-            <TrendingUp className="w-4 h-4 text-green-400" />
+      <div className="mb-6 grid grid-cols-2 gap-4">
+        <div className="glass rounded-xl p-4 text-center">
+          <div className="mb-1 flex items-center justify-center gap-1">
+            <TrendingUp className="size-4 text-green-400" />
             <span className="text-lg font-bold text-green-400">+{todayEarnings}</span>
           </div>
-          <p className="text-xs text-gray-400">Today's Earnings</p>
+          <p className="text-xs text-gray-400">Today&apos;s Earnings</p>
         </div>
         
-        <div className="glass p-4 rounded-xl text-center">
-          <div className="flex items-center justify-center gap-1 mb-1">
-            <Award className="w-4 h-4 text-purple-400" />
+        <div className="glass rounded-xl p-4 text-center">
+          <div className="mb-1 flex items-center justify-center gap-1">
+            <Award className="size-4 text-purple-400" />
             <span className="text-lg font-bold text-purple-400">#{rank}</span>
           </div>
           <p className="text-xs text-gray-400">Global Rank</p>
@@ -47,30 +47,30 @@ const TokenBalance = () => {
       </div>
 
       {/* Win Rate */}
-      <div className="glass p-4 rounded-xl">
-        <div className="flex items-center justify-between mb-2">
+      <div className="glass rounded-xl p-4">
+        <div className="mb-2 flex items-center justify-between">
           <span className="text-sm text-gray-400">Prediction Accuracy</span>
           <span className="font-bold text-green-400">{winRate}%</span>
         </div>
-        <div className="w-full bg-gray-700 rounded-full h-2">
+        <div className="h-2 w-full rounded-full bg-gray-700">
           <div 
-            className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full neon-glow-green"
+            className="neon-glow-green h-2 rounded-full bg-gradient-to-r from-green-500 to-emerald-500"
             style={{ width: `${winRate}%` }}
           ></div>
         </div>
       </div>
 
       {/* Achievement Badges */}
-      <div className="mt-6 pt-6 border-t border-white/10">
-        <p className="text-sm text-gray-400 mb-3">Recent Achievements</p>
+      <div className="mt-6 border-t border-white/10 pt-6">
+        <p className="mb-3 text-sm text-gray-400">Recent Achievements</p>
         <div className="flex flex-wrap gap-2">
-          <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/20">
+          <Badge className="border-blue-500/20 bg-blue-500/20 text-blue-400">
             Streak Master
           </Badge>
-          <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/20">
+          <Badge className="border-purple-500/20 bg-purple-500/20 text-purple-400">
             ETH Prophet
           </Badge>
-          <Badge className="bg-green-500/20 text-green-400 border-green-500/20">
+          <Badge className="border-green-500/20 bg-green-500/20 text-green-400">
             Quick Draw
           </Badge>
         </div>

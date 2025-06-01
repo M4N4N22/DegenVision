@@ -15,11 +15,8 @@ interface WalletActivity {
   confidence: number;
 }
 
-const LiveStream = () => {
-  const [activities, setActivities] = useState<WalletActivity[]>([]);
-
-  // Mock data for demonstration
-  const mockActivities: WalletActivity[] = [
+// Mock data for demonstration
+const mockActivities: WalletActivity[] = [
     {
       id: '1',
       wallet: '0x742d...8e3a',
@@ -52,6 +49,11 @@ const LiveStream = () => {
     }
   ];
 
+
+const LiveStream = () => {
+  const [activities, setActivities] = useState<WalletActivity[]>([]);
+
+  
   useEffect(() => {
     setActivities(mockActivities);
     
@@ -76,9 +78,9 @@ const LiveStream = () => {
 
   const getActionIcon = (action: string) => {
     return action === 'buy' ? (
-      <TrendingUp className="w-4 h-4 text-green-400" />
+      <TrendingUp className="size-4 text-green-400" />
     ) : (
-      <TrendingDown className="w-4 h-4 text-red-400" />
+      <TrendingDown className="size-4 text-red-400" />
     );
   };
 
@@ -87,10 +89,10 @@ const LiveStream = () => {
   };
 
   return (
-    <div className="glass-card p-6 rounded-2xl">
-      <div className="flex items-center justify-between mb-6">
+    <div className="glass-card rounded-2xl p-6">
+      <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+          <div className="size-3 animate-pulse rounded-full bg-green-500"></div>
           <h2 className="text-xl font-bold text-white">Live Wallet Activity</h2>
         </div>
         <Badge variant="outline" className="border-green-500/20 bg-green-500/10 text-green-400">
@@ -102,7 +104,7 @@ const LiveStream = () => {
         {activities.map((activity, index) => (
           <div 
             key={activity.id}
-            className={`glass p-4 rounded-xl hover:bg-white/10 transition-all duration-300 animate-fade-in border-l-2 ${
+            className={`glass animate-fade-in rounded-xl border-l-2 p-4 transition-all duration-300 hover:bg-white/10 ${
               activity.action === 'buy' ? 'border-l-green-500' : 'border-l-red-500'
             }`}
             style={{ animationDelay: `${index * 0.1}s` }}
@@ -110,12 +112,12 @@ const LiveStream = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-2">
-                  <Wallet className="w-4 h-4 text-gray-400" />
+                  <Wallet className="size-4 text-gray-400" />
                   <span className="font-mono text-sm text-gray-300">{activity.wallet}</span>
                 </div>
                 <div className="flex items-center gap-1">
                   {getActionIcon(activity.action)}
-                  <span className={`font-semibold text-sm uppercase ${getActionColor(activity.action)}`}>
+                  <span className={`text-sm font-semibold uppercase ${getActionColor(activity.action)}`}>
                     {activity.action}
                   </span>
                 </div>
@@ -128,14 +130,14 @@ const LiveStream = () => {
               </div>
             </div>
             
-            <div className="flex items-center justify-between mt-3 pt-3 border-t border-white/10">
+            <div className="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
               <div className="flex items-center gap-2 text-xs text-gray-500">
-                <Clock className="w-3 h-3" />
+                <Clock className="size-3" />
                 {activity.timestamp.toLocaleTimeString()}
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-xs text-gray-500">Confidence:</span>
-                <Badge variant="outline" className="border-blue-500/20 bg-blue-500/10 text-blue-400 text-xs">
+                <Badge variant="outline" className="border-blue-500/20 bg-blue-500/10 text-xs text-blue-400">
                   {activity.confidence}%
                 </Badge>
               </div>
