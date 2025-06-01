@@ -55,15 +55,15 @@ const PredictionPanel = () => {
   };
 
   return (
-    <div className="glass-card p-6 rounded-2xl">
-      <div className="flex items-center justify-between mb-6">
+    <div className="glass-card rounded-2xl p-6">
+      <div className="mb-6 flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-white mb-1">Make Your Prediction</h2>
+          <h2 className="mb-1 text-xl font-bold text-white">Make Your Prediction</h2>
           <p className="text-sm text-gray-400">Wallet: 0x742d...8e3a • ETH Holdings</p>
         </div>
         <div className="text-right">
-          <div className="flex items-center gap-2 mb-1">
-            <Target className="w-4 h-4 text-blue-400" />
+          <div className="mb-1 flex items-center gap-2">
+            <Target className="size-4 text-blue-400" />
             <span className="text-sm text-gray-400">Round #{currentRound}</span>
           </div>
           <Badge variant="outline" className="border-purple-500/20 bg-purple-500/10 text-purple-400">
@@ -73,24 +73,24 @@ const PredictionPanel = () => {
       </div>
 
       {/* Countdown Timer */}
-      <div className="glass p-4 rounded-xl mb-6 text-center">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <Timer className="w-5 h-5 text-blue-400" />
-          <span className="text-lg font-bold gradient-text">Time Remaining</span>
+      <div className="glass mb-6 rounded-xl p-4 text-center">
+        <div className="mb-2 flex items-center justify-center gap-2">
+          <Timer className="size-5 text-blue-400" />
+          <span className="gradient-text text-lg font-bold">Time Remaining</span>
         </div>
-        <div className="text-3xl font-mono font-bold text-white neon-glow">
+        <div className="neon-glow font-mono text-3xl font-bold text-white">
           {formatTime(timeRemaining)}
         </div>
-        <div className="w-full bg-gray-700 rounded-full h-2 mt-3">
+        <div className="mt-3 h-2 w-full rounded-full bg-gray-700">
           <div 
-            className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-1000"
+            className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-1000"
             style={{ width: `${(timeRemaining / 600) * 100}%` }}
           ></div>
         </div>
       </div>
 
       {/* Prediction Options */}
-      <div className="grid grid-cols-1 gap-3 mb-6">
+      <div className="mb-6 grid grid-cols-1 gap-3">
         {predictionOptions.map((option) => {
           const Icon = option.icon;
           const isSelected = selectedPrediction === option.id;
@@ -107,8 +107,8 @@ const PredictionPanel = () => {
               onClick={() => handlePrediction(option.id)}
             >
               <div className="flex items-center gap-3">
-                <Icon className={`w-6 h-6 ${isSelected ? 'text-white' : option.color}`} />
-                <span className={`font-semibold text-lg ${isSelected ? 'text-white' : 'text-gray-300'}`}>
+                <Icon className={`size-6 ${isSelected ? 'text-white' : option.color}`} />
+                <span className={`text-lg font-semibold ${isSelected ? 'text-white' : 'text-gray-300'}`}>
                   {option.label}
                 </span>
                 {isSelected && (
@@ -124,10 +124,10 @@ const PredictionPanel = () => {
 
       {/* Prediction Summary */}
       {selectedPrediction && (
-        <div className="glass p-4 rounded-xl animate-fade-in">
-          <div className="flex items-center justify-between mb-3">
+        <div className="glass animate-fade-in rounded-xl p-4">
+          <div className="mb-3 flex items-center justify-between">
             <span className="text-sm text-gray-400">Your Prediction</span>
-            <Badge className="bg-green-500/20 text-green-400 border-green-500/20">
+            <Badge className="border-green-500/20 bg-green-500/20 text-green-400">
               Confirmed
             </Badge>
           </div>

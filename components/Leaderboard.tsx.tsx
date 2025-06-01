@@ -61,13 +61,13 @@ const Leaderboard = () => {
   const getRankIcon = (rank: number) => {
     switch (rank) {
       case 1:
-        return <Crown className="w-6 h-6 text-yellow-400" />;
+        return <Crown className="size-6 text-yellow-400" />;
       case 2:
-        return <Medal className="w-6 h-6 text-gray-300" />;
+        return <Medal className="size-6 text-gray-300" />;
       case 3:
-        return <Award className="w-6 h-6 text-amber-600" />;
+        return <Award className="size-6 text-amber-600" />;
       default:
-        return <span className="text-gray-400 font-bold text-lg">#{rank}</span>;
+        return <span className="text-lg font-bold text-gray-400">#{rank}</span>;
     }
   };
 
@@ -98,52 +98,52 @@ const Leaderboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative">
+    <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {/* Background elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '2s'}}></div>
+        <div className="animate-pulse-slow absolute left-1/4 top-1/4 size-96 rounded-full bg-yellow-500/10 blur-3xl"></div>
+        <div className="animate-pulse-slow absolute bottom-1/4 right-1/4 size-96 rounded-full bg-purple-500/10 blur-3xl" style={{animationDelay: '2s'}}></div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 py-20">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-2 mb-6">
-            <Trophy className="w-4 h-4 text-yellow-400" />
+      <div className="container relative z-10 mx-auto px-6 py-20">
+        <div className="mb-12 text-center">
+          <div className="glass-card mb-6 inline-flex items-center gap-2 rounded-full px-4 py-2">
+            <Trophy className="size-4 text-yellow-400" />
             <span className="text-sm font-medium text-gray-300">Global Rankings</span>
           </div>
           
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">
+          <h1 className="mb-4 text-5xl font-bold md:text-6xl">
             <span className="gradient-text">Alpha Leaderboard</span>
           </h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-xl text-gray-300">
             Top strategic predictors ranked by accuracy and alpha tokens earned
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="mx-auto max-w-4xl">
           {/* Top 3 Podium */}
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="mb-12 grid gap-6 md:grid-cols-3">
             {leaderboardData.slice(0, 3).map((entry, index) => (
-              <div key={entry.rank} className={`glass-card p-6 rounded-2xl ${getRankGlow(entry.rank)} order-${index === 0 ? '2' : index === 1 ? '1' : '3'} md:order-none`}>
+              <div key={entry.rank} className={`glass-card rounded-2xl p-6 ${getRankGlow(entry.rank)} order-${index === 0 ? '2' : index === 1 ? '1' : '3'} md:order-none`}>
                 <div className="text-center">
                   <div className="mb-4">
                     {getRankIcon(entry.rank)}
                   </div>
                   <div className="mb-3">
-                    <div className="font-bold text-white text-lg">{entry.username}</div>
+                    <div className="text-lg font-bold text-white">{entry.username}</div>
                     <div className="font-mono text-sm text-gray-400">{entry.wallet}</div>
                   </div>
                   <div className="mb-4">
-                    <div className="text-2xl font-bold gradient-text">{entry.tokens.toLocaleString()}</div>
+                    <div className="gradient-text text-2xl font-bold">{entry.tokens.toLocaleString()}</div>
                     <div className="text-sm text-gray-400">Alpha Tokens</div>
                   </div>
-                  <div className="grid grid-cols-2 gap-3 mb-4">
-                    <div className="glass p-2 rounded-lg">
-                      <div className="text-green-400 font-bold">{entry.winRate}%</div>
+                  <div className="mb-4 grid grid-cols-2 gap-3">
+                    <div className="glass rounded-lg p-2">
+                      <div className="font-bold text-green-400">{entry.winRate}%</div>
                       <div className="text-xs text-gray-400">Win Rate</div>
                     </div>
-                    <div className="glass p-2 rounded-lg">
-                      <div className="text-yellow-400 font-bold">{entry.streak}</div>
+                    <div className="glass rounded-lg p-2">
+                      <div className="font-bold text-yellow-400">{entry.streak}</div>
                       <div className="text-xs text-gray-400">Streak</div>
                     </div>
                   </div>
@@ -158,18 +158,18 @@ const Leaderboard = () => {
           </div>
 
           {/* Rest of leaderboard */}
-          <div className="glass-card p-6 rounded-2xl">
-            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-blue-400" />
+          <div className="glass-card rounded-2xl p-6">
+            <h3 className="mb-6 flex items-center gap-2 text-xl font-bold text-white">
+              <TrendingUp className="size-5 text-blue-400" />
               Complete Rankings
             </h3>
             
             <div className="space-y-3">
               {leaderboardData.map((entry) => (
-                <div key={entry.rank} className="glass p-4 rounded-xl hover:bg-white/10 transition-all duration-300">
+                <div key={entry.rank} className="glass rounded-xl p-4 transition-all duration-300 hover:bg-white/10">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 flex items-center justify-center">
+                      <div className="flex size-12 items-center justify-center">
                         {getRankIcon(entry.rank)}
                       </div>
                       <div>
