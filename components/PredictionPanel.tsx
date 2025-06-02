@@ -55,7 +55,7 @@ const PredictionPanel = () => {
   };
 
   return (
-    <div className="glass-card rounded-2xl p-6">
+    <div className="glass-card p-6">
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h2 className="mb-1 text-xl font-bold text-white">Make Your Prediction</h2>
@@ -73,15 +73,15 @@ const PredictionPanel = () => {
       </div>
 
       {/* Countdown Timer */}
-      <div className="glass mb-6 rounded-xl p-4 text-center">
+      <div className=" mb-6 rounded-xl p-4 text-center">
         <div className="mb-2 flex items-center justify-center gap-2">
           <Timer className="size-5 text-blue-400" />
           <span className="gradient-text text-lg font-bold">Time Remaining</span>
         </div>
-        <div className="neon-glow font-mono text-3xl font-bold text-white">
+        <div className=" font-mono text-3xl font-bold text-white">
           {formatTime(timeRemaining)}
         </div>
-        <div className="mt-3 h-2 w-full rounded-full bg-gray-700">
+        <div className="mt-3 h-2 w-full rounded-full bg-gray-700 neon-glow">
           <div 
             className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-1000"
             style={{ width: `${(timeRemaining / 600) * 100}%` }}
@@ -99,7 +99,7 @@ const PredictionPanel = () => {
             <Button
               key={option.id}
               variant="outline"
-              className={`glass h-16 border-2 transition-all duration-300 hover:scale-105 ${
+              className={`glass rounded-3xl h-16 border-2 transition-all duration-300 hover:scale-105 ${
                 isSelected 
                   ? `border-white/40 bg-gradient-to-r ${option.gradient} neon-glow` 
                   : 'border-white/20 hover:border-white/30'

@@ -4,11 +4,11 @@ import TokenBalance from "./TokenBalance.tsx";
 
 const Dashboard = () => {
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="relative min-h-screen bg-background">
       {/* Animated background elements */}
       <div className="absolute inset-0">
-        <div className="animate-pulse-slow absolute left-1/4 top-1/4 size-96 rounded-full bg-blue-500/5 blur-3xl"></div>
-        <div className="animate-pulse-slow absolute bottom-1/4 right-1/4 size-96 rounded-full bg-purple-500/5 blur-3xl" style={{animationDelay: '2s'}}></div>
+        <div className="animate-pulse-slow absolute left-1/4 top-1/4 size-96 rounded-full bg-green-500/5 blur-3xl"></div>
+        <div className="animate-pulse-slow absolute bottom-1/4 right-1/4 size-96 rounded-full bg-cyan-500/5 blur-3xl" style={{animationDelay: '2s'}}></div>
       </div>
 
       <div className="container relative z-10 mx-auto px-6 py-8">

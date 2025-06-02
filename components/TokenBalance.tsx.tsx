@@ -28,7 +28,7 @@ const TokenBalance = () => {
       </div>
 
       {/* Stats Grid */}
-      <div className="mb-6 grid grid-cols-2 gap-4">
+      <div className="mb-3 grid grid-cols-2 gap-3">
         <div className="glass rounded-xl p-4 text-center">
           <div className="mb-1 flex items-center justify-center gap-1">
             <TrendingUp className="size-4 text-green-400" />
