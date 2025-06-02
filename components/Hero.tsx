@@ -26,7 +26,7 @@ const Hero = () => {
       <div className="container relative z-10 mx-auto px-6 py-2">
         <div className="mx-auto max-w-4xl text-center">
           {/* Badge */}
-          <div className="glass-card animate-fade-in mb-8 inline-flex items-center gap-2 rounded-full px-4 py-2">
+          <div className="glass-card mb-8 inline-flex items-center gap-2 rounded-full px-4 py-2">
             <Zap className="size-4 text-yellow-400" />
             <span className="text-sm font-medium text-gray-300">
               Real-time Blockchain Analytics
@@ -35,8 +35,8 @@ const Hero = () => {
 
           {/* Main headline */}
           <h1
-            className="animate-fade-in mb-6 text-6xl font-bold md:text-8xl tracking-tighter"
-            style={{ animationDelay: "0.2s" }}
+            className="in mb-6 text-6xl font-bold md:text-8xl tracking-tighter"
+        
           >
             <span className="gradient-text">Predict the Chain.</span>
             <br />
@@ -45,8 +45,8 @@ const Hero = () => {
 
           {/* Subtitle */}
           <p
-            className="animate-fade-in mx-auto mb-12 max-w-3xl text-xl leading-relaxed text-gray-300 md:text-2xl"
-            style={{ animationDelay: "0.4s" }}
+            className=" mx-auto mb-12 max-w-3xl text-xl leading-relaxed text-gray-300 md:text-2xl"
+      
           >
             Harness real-time on-chain wallet activity to make strategic
             predictions. Test your vision against the market and climb the
@@ -55,8 +55,8 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div
-            className="animate-fade-in mb-16 flex flex-col justify-center gap-4 sm:flex-row"
-            style={{ animationDelay: "0.6s" }}
+            className=" mb-16 flex flex-col justify-center gap-4 sm:flex-row"
+          
           >
             <Button
               size="lg"
@@ -80,8 +80,8 @@ const Hero = () => {
 
           {/* Feature highlights */}
           <div
-            className="animate-fade-in mx-auto grid max-w-4xl gap-8 md:grid-cols-3"
-            style={{ animationDelay: "0.8s" }}
+            className=" mx-auto grid max-w-4xl gap-8 md:grid-cols-3"
+       
           >
             <div className="glass-card rounded-3xl p-6 transition-all duration-300 hover:scale-105">
               <TrendingUp className="mx-auto mb-4 size-8 text-green-400" />
