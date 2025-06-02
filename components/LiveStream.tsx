@@ -88,7 +88,7 @@ const LiveStream = () => {
   }
 
   return (
-    <div className="glass-card  p-6 ">
+    <div className="  p-4 bg-gradient-to-tr from-green-800/10 via-green-900/10 to-green-950/10 rounded-3xl">
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="size-3 animate-pulse rounded-full bg-green-500"></div>
@@ -106,10 +106,10 @@ const LiveStream = () => {
         {activities.map((activity, index) => (
           <div key={activity.id} className="min-h-[80px] w-full">
             <div
-              className={`glass animate-in rounded-3xl border-l-2 p-4 transition-all duration-300 hover:bg-white/10 ${
+              className={` animate-fade-in rounded-3xl shadow-lg p-4 transition-all duration-300 hover:bg-white/10 ${
                 activity.action === "buy"
-                  ? "border-l-green-500"
-                  : "border-l-red-500"
+                  ? "bg-gradient-to-r from-green-400/25 to-green-500/25 "
+                  : "bg-gradient-to-r from-red-400/25 to-red-500/25 "
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
