@@ -1,12 +1,13 @@
 import "@/styles/globals.css"
+
 import { Metadata } from "next"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
-import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
+import WalletProvider from "@/app/providers/wallet-provider"
 
 export const metadata: Metadata = {
   title: {
@@ -50,11 +51,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="relative flex min-h-screen flex-col">
-            <SiteHeader />
-            <main className="flex-1">{children}</main>
-          </div>
-          <TailwindIndicator />
+          <WalletProvider>
+            <div className="relative flex min-h-screen flex-col">
+              <main className="flex-1">{children}</main>
+            </div>
+            <TailwindIndicator />
+          </WalletProvider>
         </ThemeProvider>
       </body>
     </html>

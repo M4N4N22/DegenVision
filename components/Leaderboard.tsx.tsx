@@ -101,7 +101,7 @@ const Leaderboard = () => {
     <div className="relative min-h-screen bg-background">
       {/* Background elements */}
       <div className="absolute inset-0">
-        <div className="animate-pulse-slow absolute left-1/4 top-1/4 size-96 rounded-full bg-green-500/10 blur-3xl"></div>
+        <div className="animate-pulse-slow absolute left-1/4 top-1/4 size-96 rounded-full bg-emerald-500/10 blur-3xl"></div>
         <div className="animate-pulse-slow absolute bottom-1/4 right-1/4 size-96 rounded-full bg-sky-500/10 blur-3xl" style={{animationDelay: '2s'}}></div>
       </div>
 

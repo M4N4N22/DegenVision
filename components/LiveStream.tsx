@@ -1,157 +1,188 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { Clock, TrendingDown, TrendingUp, Wallet } from "lucide-react"
+import React from "react"
+import { Gauge, Plug, PlugZap, Timer, Zap } from "lucide-react"
 
+import { useBlockStream } from "@/hooks/useBlockStream"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 
-interface WalletActivity {
-  id: string
-  wallet: string
-  action: "buy" | "sell" | "transfer"
-  token: string
-  amount: string
-  value: string
-  timestamp: Date
-  confidence: number
+function truncateHash(hash: string, length = 10) {
+  if (!hash) return ""
+  return `${hash.slice(0, length)}...${hash.slice(-4)}`
 }
 
-// Mock data for demonstration
-const mockActivities: WalletActivity[] = [
-  {
-    id: "1",
-    wallet: "0x742d...8e3a",
-    action: "buy",
-    token: "ETH",
-    amount: "2.5",
-    value: "$6,250",
-    timestamp: new Date(),
-    confidence: 94,
-  },
-  {
-    id: "2",
-    wallet: "0x1a2b...4c5d",
-    action: "sell",
-    token: "USDC",
-    amount: "10,000",
-    value: "$10,000",
-    timestamp: new Date(Date.now() - 30000),
-    confidence: 87,
-  },
-  {
-    id: "3",
-    wallet: "0x9f8e...2d1c",
-    action: "buy",
-    token: "BTC",
-    amount: "0.15",
-    value: "$6,750",
-    timestamp: new Date(Date.now() - 60000),
-    confidence: 91,
-  },
-]
-
 const LiveStream = () => {
-  const [activities, setActivities] = useState<WalletActivity[]>([])
+  const { blocks, loading, error, connected, connect, disconnect } =
+    useBlockStream()
 
-  useEffect(() => {
-    setActivities(mockActivities)
-
-    // Simulate live updates
-    const interval = setInterval(() => {
-      const newActivity: WalletActivity = {
-        id: Math.random().toString(36).substr(2, 9),
-        wallet: `0x${Math.random().toString(16).substr(2, 4)}...${Math.random().toString(16).substr(2, 4)}`,
-        action: Math.random() > 0.5 ? "buy" : "sell",
-        token: ["ETH", "BTC", "USDC", "LINK"][Math.floor(Math.random() * 4)],
-        amount: (Math.random() * 100).toFixed(2),
-        value: `$${(Math.random() * 50000).toLocaleString()}`,
-        timestamp: new Date(),
-        confidence: Math.floor(Math.random() * 20) + 80,
-      }
-
-      setActivities((prev) => [newActivity, ...prev.slice(0, 9)])
-    }, 3000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  const getActionIcon = (action: string) => {
-    return action === "buy" ? (
-      <TrendingUp className="size-4 text-green-400" />
-    ) : (
-      <TrendingDown className="size-4 text-red-400" />
-    )
-  }
-
-  const getActionColor = (action: string) => {
-    return action === "buy" ? "text-green-400" : "text-red-400"
+  const handleToggle = async () => {
+    if (connected) {
+      await disconnect()
+    } else {
+      await connect()
+    }
   }
 
   return (
-    <div className="  p-4 bg-gradient-to-tr from-green-800/10 via-green-900/10 to-green-950/10 rounded-3xl">
+    <div className="p-6 glass-card max-w-4xl mx-auto">
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="size-3 animate-pulse rounded-full bg-green-500"></div>
-          <h2 className="text-xl font-bold text-white">Live Wallet Activity</h2>
+          <div
+            className={`h-3 w-3 rounded-full ${
+              connected ? "bg-green-500 animate-pulse" : "bg-red-400"
+            }`}
+          />
+          <h2 className="text-xl font-bold text-white">Live ETH Blocks</h2>
         </div>
-        <Badge
-          variant="outline"
-          className="border-green-500/20 bg-green-500/10 text-green-400"
-        >
-          Real-time
-        </Badge>
+
+        <div className="flex items-center gap-4">
+          <Badge
+            variant="outline"
+            className={`border-green-500/20 ${
+              connected
+                ? "bg-green-500/10 text-green-400"
+                : "bg-red-500/10 text-red-400"
+            }`}
+          >
+            {connected ? "Streaming" : "Paused"}
+          </Badge>
+
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={handleToggle}
+            className="flex items-center gap-2"
+          >
+            {connected ? (
+              <>
+                <Plug className="h-4 w-4" />
+                Unsubscribe
+              </>
+            ) : (
+              <>
+                <PlugZap className="h-4 w-4" />
+                Subscribe
+              </>
+            )}
+          </Button>
+        </div>
       </div>
 
-      <div className="space-y-3">
-        {activities.map((activity, index) => (
-          <div key={activity.id} className="min-h-[80px] w-full">
-            <div
-              className={` animate-fade-in rounded-3xl shadow-lg p-4 transition-all duration-300 hover:bg-white/10 ${
-                activity.action === "buy"
-                  ? "bg-gradient-to-r from-green-400/25 to-green-500/25 "
-                  : "bg-gradient-to-r from-red-400/25 to-red-500/25 "
-              }`}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-2">
-                    <Wallet className="size-4 text-gray-400" />
-                    <span className="font-mono text-sm text-gray-300">
-                      {activity.wallet}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    {getActionIcon(activity.action)}
-                    <span
-                      className={`text-sm font-semibold uppercase ${getActionColor(activity.action)}`}
-                    >
-                      {activity.action}
-                    </span>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className="font-semibold text-white">
-                    {activity.amount} {activity.token}
-                  </div>
-                  <div className="text-sm text-gray-400">{activity.value}</div>
-                </div>
+      {loading && (
+        <div className="text-white p-6">Loading live block insights...</div>
+      )}
+
+      {error && (
+        <div className="text-red-400 p-6">
+          Error loading block insights: {error.message}
+        </div>
+      )}
+
+      {!loading && !blocks.length && connected && (
+        <div className="text-white p-6">
+          No live block insights available at the moment.
+        </div>
+      )}
+
+      <div className="space-y-4">
+        {blocks.slice(0, 10).map((block, index) => (
+          <div
+            key={block.blockNumber}
+            className=" rounded-3xl bg-gray-700/40 p-5 shadow-lg transition-colors hover:bg-gray-600/60"
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
+            <div className="flex flex-wrap items-center justify-between gap-4 text-white">
+              <div className="flex flex-col">
+                <span className="text-sm text-gray-400">Block Number</span>
+                <span className="font-mono font-bold text-lg">
+                  #{block.blockNumber.toLocaleString()}
+                </span>
               </div>
 
-              <div className="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
-                <div className="flex items-center gap-2 text-xs text-gray-500">
-                  <Clock className="size-3" />
-                  {activity.timestamp.toLocaleTimeString()}
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-gray-500">Confidence:</span>
-                  <Badge
-                    variant="outline"
-                    className="border-blue-500/20 bg-blue-500/10 text-xs text-blue-400"
-                  >
-                    {activity.confidence}%
-                  </Badge>
-                </div>
+              <div className="flex flex-col min-w-[110px]">
+                <span className="text-sm text-gray-400">Transactions</span>
+                <span className="font-semibold">{block.txCount}</span>
+              </div>
+
+              <div className="flex flex-col min-w-[130px]">
+                <span className="text-sm text-gray-400">Gas Used</span>
+                <span>{block.gasUsed.toLocaleString()}</span>
+              </div>
+
+              <div className="flex flex-col min-w-[170px]">
+                <span className="text-sm text-gray-400">Block Hash</span>
+                <code
+                  title={block.hash}
+                  className="font-mono truncate cursor-pointer rounded bg-gray-800/70 p-1 text-yellow-400"
+                  onClick={() => navigator.clipboard.writeText(block.hash)}
+                >
+                  {truncateHash(block.hash, 12)}
+                </code>
+              </div>
+
+              <div className="flex flex-col min-w-[170px]">
+                <span className="text-sm text-gray-400">Miner</span>
+                <code
+                  title={block.miner}
+                  className="font-mono truncate cursor-pointer rounded bg-gray-800/70 p-1 text-blue-400"
+                  onClick={() => navigator.clipboard.writeText(block.miner)}
+                >
+                  {truncateHash(block.miner, 12)}
+                </code>
+              </div>
+
+              <div className="flex flex-col min-w-[130px]">
+                <span className="text-sm text-gray-400 flex items-center gap-1">
+                  <Timer className="size-4 text-gray-400" />
+                  Timestamp
+                </span>
+                <span>
+                  {new Date(block.timestamp).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                  })}
+                </span>
+              </div>
+            </div>
+            {/* New Block Metadata */}
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-white">
+              <div>
+                <span className="text-gray-400">Base Fee Per Gas:</span>{" "}
+                <span className="font-mono text-green-400">
+                  {block.baseFeePerGas}
+                </span>
+              </div>
+              <div>
+                <span className="text-gray-400">Withdrawals:</span>{" "}
+                <span className="font-semibold">{block.withdrawalCount}</span>
+              </div>
+              <div>
+                <span className="text-gray-400">Logs:</span>{" "}
+                <span className="font-semibold">{block.logCount}</span>
+              </div>
+              <div>
+                <span className="text-gray-400">Size:</span>{" "}
+                <span className="font-mono">{block.size}</span>
+              </div>
+              <div>
+                <span className="text-gray-400">Extra Data:</span>{" "}
+                <code className="font-mono bg-gray-800/70 px-1 rounded text-yellow-300">
+                  {truncateHash(block.extraData, 16)}
+                </code>
+              </div>
+              <div>
+                <span className="text-gray-400">Blob Gas Used:</span>{" "}
+                <span className="font-mono text-pink-300">
+                  {block.blobGasUsed}
+                </span>
+              </div>
+              <div>
+                <span className="text-gray-400">Excess Blob Gas:</span>{" "}
+                <span className="font-mono text-pink-300">
+                  {block.excessBlobGas}
+                </span>
               </div>
             </div>
           </div>
