@@ -199,7 +199,7 @@ const PredictionPanel = () => {
           <h2 className="text-xl font-bold text-white mb-1">
             ETH Price Prediction
           </h2>
-          <p className="text-sm text-gray-400 flex items-center gap-2 hidden">
+          <p className="text-sm text-gray-400 items-center gap-2 hidden">
             Current ETH:{" "}
             {loading ? (
               <span className="text-yellow-300 animate-pulse ml-1">
@@ -476,10 +476,10 @@ const PredictionPanel = () => {
             <Badge
               className={`text-base px-4 py-2 mb-4 bg-transparent border-none hover:bg-transparent ${
                 result === "won"
-                  ? "bg-green-500/20 text-green-400 border-green-500/20"
+                  ? " text-green-400 "
                   : result === "lost"
-                    ? " text-red-400 border-red-500/20"
-                    : "bg-yellow-500/20 text-yellow-400 border-yellow-500/20"
+                    ? " text-red-400 "
+                    : " text-yellow-400 "
               }`}
             >
               {result === "won"
