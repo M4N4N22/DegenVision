@@ -21,11 +21,11 @@ const dummyData = [
 
 const PriceChart = () => {
   return (
-    <div className=" p-4">
+    <div className=" p-6 border border-white/20 rounded-3xl">
       <h2 className="mb-4 text-lg font-semibold ">ETH Price (5m)</h2>
 
       <ResponsiveContainer
-        className="bg-gradient-to-tr from-green-800/10 via-green-900/10 to-green-950/10 rounded-3xl p-2"
+        className="bg-gradient-to-tr from-emerald-950/10 via-emerald-500/10 to-emerald-950/10 rounded-3xl p-2 border border-white/10"
         width="100%"
         height={360}
       >
@@ -33,7 +33,7 @@ const PriceChart = () => {
           data={dummyData}
           margin={{ top: 10, right: 20, left: 0, bottom: 0 }}
         >
-          <CartesianGrid strokeDasharray="3 3" stroke="#222" />
+          <CartesianGrid stroke="#222" />
           <XAxis dataKey="time" stroke="#888" fontSize={14} />
           <YAxis
             domain={["dataMin - 2", "dataMax + 2"]}

@@ -1,77 +1,103 @@
 
 
-import { Coins, TrendingUp, Award } from "lucide-react";
+import { Coins, TrendingUp, Award, DollarSign, Target } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const TokenBalance = () => {
-  const balance = 2847;
-  const todayEarnings = 156;
+  // Updated to show USDC balance and Alpha tokens separately
+  const usdcBalance = 1247.63;
+  const alphaTokens = 2847;
+  const todayEarnings = 156.75;
   const rank = 23;
   const winRate = 72;
+  const totalProfit = 423.45;
 
   return (
-    <div className="glass-card rounded-2xl p-6">
-      <div className="mb-6 flex items-center justify-between">
-        <h2 className="text-xl font-bold text-white">Your Alpha Score</h2>
+    <div className="glass-card p-6 rounded-2xl">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-xl font-bold text-white">Balance & Rewards</h2>
         <Badge variant="outline" className="border-gold-500/20 bg-yellow-500/10 text-yellow-400">
           Elite Trader
         </Badge>
       </div>
 
-      {/* Main Balance */}
-      <div className="mb-8 text-center">
-        <div className="mb-2 flex items-center justify-center gap-2">
-          <Coins className="size-8 text-yellow-400" />
-          <span className="gradient-text text-4xl font-bold">{balance.toLocaleString()}</span>
+      {/* USDC Balance */}
+      <div className="text-center mb-6">
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <DollarSign className="w-8 h-8 text-green-400" />
+          <span className="text-4xl font-bold text-green-400">${usdcBalance.toFixed(2)}</span>
         </div>
-        <p className="text-gray-400">Total Alpha Tokens</p>
+        <p className="text-gray-400">Available USDC</p>
+      </div>
+
+      {/* Alpha Tokens */}
+      <div className="glass p-4 rounded-xl mb-6 text-center">
+        <div className="flex items-center justify-center gap-2 mb-1">
+          <Coins className="w-6 h-6 text-yellow-400" />
+          <span className="text-2xl font-bold gradient-text">{alphaTokens.toLocaleString()}</span>
+        </div>
+        <p className="text-sm text-gray-400">Alpha Tokens</p>
       </div>
 
       {/* Stats Grid */}
-      <div className="mb-3 grid grid-cols-2 gap-3">
-        <div className="glass rounded-xl p-4 text-center">
-          <div className="mb-1 flex items-center justify-center gap-1">
-            <TrendingUp className="size-4 text-green-400" />
-            <span className="text-lg font-bold text-green-400">+{todayEarnings}</span>
+      <div className="grid grid-cols-2 gap-4 mb-6 ">
+        <div className="glass p-4 rounded-xl text-center">
+          <div className="flex items-center justify-center gap-1 mb-1">
+            <TrendingUp className="w-4 h-4 text-green-400" />
+            <span className="text-lg font-bold text-green-400">+${todayEarnings.toFixed(2)}</span>
           </div>
-          <p className="text-xs text-gray-400">Today&apos;s Earnings</p>
+          <p className="text-xs text-gray-400">Today's Profit</p>
         </div>
         
-        <div className="glass rounded-xl p-4 text-center">
-          <div className="mb-1 flex items-center justify-center gap-1">
-            <Award className="size-4 text-purple-400" />
+        <div className="glass p-4 rounded-xl text-center">
+          <div className="flex items-center justify-center gap-1 mb-1">
+            <Award className="w-4 h-4 text-purple-400" />
             <span className="text-lg font-bold text-purple-400">#{rank}</span>
           </div>
           <p className="text-xs text-gray-400">Global Rank</p>
         </div>
       </div>
 
+      {/* Total Profit */}
+      <div className="glass p-4 rounded-xl mb-6">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-sm text-gray-400">Total Profit</span>
+          <span className="font-bold text-green-400 text-lg">+${totalProfit.toFixed(2)}</span>
+        </div>
+        <div className="w-full bg-gray-700 rounded-full h-2">
+          <div 
+            className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full neon-glow-green"
+            style={{ width: '75%' }}
+          ></div>
+        </div>
+      </div>
+
       {/* Win Rate */}
-      <div className="glass rounded-xl p-4">
-        <div className="mb-2 flex items-center justify-between">
+      <div className="glass p-4 rounded-xl mb-6">
+        <div className="flex items-center justify-between mb-2">
           <span className="text-sm text-gray-400">Prediction Accuracy</span>
           <span className="font-bold text-green-400">{winRate}%</span>
         </div>
-        <div className="h-2 w-full rounded-full bg-gray-700">
+        <div className="w-full bg-gray-700 rounded-full h-2">
           <div 
-            className="neon-glow-green h-2 rounded-full bg-gradient-to-r from-green-500 to-emerald-500"
+            className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full neon-glow-green"
             style={{ width: `${winRate}%` }}
           ></div>
         </div>
       </div>
 
       {/* Achievement Badges */}
-      <div className="mt-6 border-t border-white/10 pt-6">
-        <p className="mb-3 text-sm text-gray-400">Recent Achievements</p>
+      <div className="pt-4 border-t border-white/10">
+        <p className="text-sm text-gray-400 mb-3">Recent Achievements</p>
         <div className="flex flex-wrap gap-2">
-          <Badge className="border-blue-500/20 bg-blue-500/20 text-blue-400">
+          <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/20">
             Streak Master
           </Badge>
-          <Badge className="border-purple-500/20 bg-purple-500/20 text-purple-400">
+          <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/20">
             ETH Prophet
           </Badge>
-          <Badge className="border-green-500/20 bg-green-500/20 text-green-400">
-            Quick Draw
+          <Badge className="bg-green-500/20 text-green-400 border-green-500/20">
+            Big Winner
           </Badge>
         </div>
       </div>

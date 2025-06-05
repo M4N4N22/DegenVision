@@ -1,71 +1,60 @@
 "use client"
 
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-  Cell,
-} from "recharts"
-
 const predictionData = [
   {
-    prediction: "Will Go Up",
+    label: "Will Go Up",
     count: 128,
-    fill: "#16a34a  ", // green
   },
   {
-    prediction: "Will Go Down",
+    label: "Will Go Down",
     count: 86,
-    fill: "#dc2626  ", // red
   },
 ]
 
-const PredictionBarChart = () => {
-  return (
-    <div className="p-4">
-      <h2 className="mb-4 text-lg font-semibold">Market Sentiment</h2>
+const totalVotes = predictionData.reduce((sum, p) => sum + p.count, 0)
 
-      <ResponsiveContainer
-        className="bg-gradient-to-tr from-sky-800/10 via-sky-900/10 to-sky-950/10 rounded-3xl"
-        width="100%"
-        height={200}
-      >
-        <BarChart
-          layout="vertical"
-          data={predictionData}
-          margin={{ top: 10, right: 20, left: 10, bottom: 0 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" stroke="#222" />
-          <XAxis
-            type="number"
-            stroke="#888"
-            fontSize={14}
-            allowDecimals={false}
-          />
-          <YAxis
-            type="category"
-            dataKey="prediction"
-            stroke="#888"
-            fontSize={14}
-          />
-          <Tooltip
-            contentStyle={{ backgroundColor: "#111", borderColor: "#333" }}
-            labelStyle={{ color: "#ccc" }}
-            formatter={(value: number) => [`${value} users`, "Votes"]}
-          />
-          <Bar dataKey="count" radius={[0, 12, 12, 0]}>
-            {predictionData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={entry.fill} />
-            ))}
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
+const PredictionSentiment = () => {
+  return (
+    <div className="p-6 glass-card space-y-4">
+      <h2 className="text-lg font-bold text-white">Live User Predictions</h2>
+
+      {/* Stacked pill */}
+      <div className="flex h-8 w-full overflow-hidden rounded-full border border-neutral-800">
+        {predictionData.map((entry, i) => {
+          const widthPercent = (entry.count / totalVotes) * 100
+
+          // Manually assign Tailwind classes here
+          const bgColor =
+            entry.label === "Will Go Up" ? "bg-green-700" : "bg-red-700"
+
+          return (
+            <div
+              key={i}
+              className={`h-full text-xs font-medium text-white flex items-center justify-center ${bgColor}`}
+              style={{ width: `${widthPercent}%` }}
+            >
+              {widthPercent > 10 && `${Math.round(widthPercent)}%`}
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Labels below bar */}
+      <div className="flex justify-between text-sm text-muted-foreground px-1">
+        {predictionData.map((entry, i) => {
+          const dotColor =
+            entry.label === "Will Go Up" ? "bg-green-600" : "bg-red-600"
+
+          return (
+            <div key={i} className="flex items-center gap-2">
+              <span className={`w-3 h-3 rounded-full ${dotColor}`} />
+              <span>{entry.label} ({entry.count})</span>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
 
-export default PredictionBarChart
+export default PredictionSentiment

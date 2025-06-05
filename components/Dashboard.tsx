@@ -1,55 +1,50 @@
-import LiveStream from "./LiveStream"
-import PredictionPanel from "./PredictionPanel"
-import PriceChart from "./PriceChart"
-import PredictionBarChart from "./PredictionBarChart"
-import TokenBalance from "./TokenBalance.tsx"
+import ETHChart from "./ETHChart";
+import PredictionBarChart from "./PredictionBarChart";
+import PredictionPanel from "./PredictionPanel";
+import EarningsDisplay from "./EarningDisplay";
+import RoundHistory from "./RoundHistory";
+import TokenBalance from "./TokenBalance.tsx";
 
 const Dashboard = () => {
   return (
-    <div className="relative min-h-screen bg-background">
-      {/* Background elements */}
-      <div className="absolute inset-0">
-        <div className="animate-pulse-slow absolute left-1/4 top-1/4 size-96 rounded-full bg-green-500/5 blur-3xl" />
-        <div
-          className="animate-pulse-slow absolute bottom-1/4 right-1/4 size-96 rounded-full bg-cyan-500/5 blur-3xl"
-          style={{ animationDelay: "2s" }}
-        />
-      </div>
+    <div className="relative min-h-screen bg-background text-white">
+      <div className="container mx-auto py-6 space-y-4">
 
-      {/* Content */}
-      <div className="container relative z-10  py-8">
-        <div className="mb-8">
-          <h1 className="mb-2 text-4xl font-bold md:text-5xl">
-            <span className="">ETH Prediction Arena</span>
+
+
+        {/* Core Interaction Area */}
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8">
+          {/* Left: ETH Chart + Social Signals */}
+          <div className="space-y-4">
+          <div><h1 className="text-4xl font-bold tracking-tight gradient-text">
+            ETH Prediction Arena
           </h1>
-          <p className="text-lg text-gray-300">
-            Predict whether ETH will go up or down in the next 5 minutes —
-            powered by real-time data from{" "}
-            <span className="text-white font-semibold">Nodit</span>
-          </p>
-        </div>
-<div className="my-8 border h-0 border-white/30"></div>
-        <div className="grid grid-cols-1 lg:grid-cols-4">
-          {/* Left Panel - Scrollable Content */}
-          <div className="lg:col-span-3 space-y-6 overflow-y-auto">
-            <PriceChart />
-            <PredictionBarChart/>
-            <LiveStream />
+          <p className="text-gray-300 text-base max-w-prose">
+            Predict real-time ETH price movement — powered by{" "}
+            <span className="font-semibold text-white">Nodit</span>
+          </p></div>
+            <ETHChart />
+            <PredictionBarChart />
           </div>
 
-          {/* Right Panel - Sticky Prediction Panel */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-20 space-y-6">
-              <div className="w-full ">
-                <PredictionPanel />
-              </div>
-              {/* Add wallet stats, win rate etc here later */}
-            </div>
-          </div>
+          {/* Right: Sticky Prediction Panel */}
+          <aside className="sticky top-24 self-start ">
+            <PredictionPanel />
+          </aside>
+        </div>
+
+        {/* Divider */}
+        <hr className="border-white/10" />
+        <EarningsDisplay />
+        {/* Secondary Info: Earnings + Token */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+       
+          <RoundHistory />
+          <TokenBalance />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

@@ -2,74 +2,108 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
-    --background: 300 100% 0.2%;
-    --foreground: 222.2 47.4% 11.2%;
+    --background: 0 0% 0%; /* pure black */
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Whites with different lightness to simulate white opacity */
+    --foreground: 0 0% 5%;      /* white/5 */
+    --muted: 0 0% 10%;          /* white/10 */
+    --muted-foreground: 0 0% 20%; 
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
+    --popover: 0 0% 100%;       /* pure white */
+    --popover-foreground: 0 0% 5%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
+    --border: 0 0% 10%;
+    --input: 0 0% 10%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 47.4% 11.2%;
+    --card: 0 0% 100%;          /* pure white */
+    --card-foreground: 0 0% 5%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 0 0% 5%;
+    --primary-foreground: 0 0% 90%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 5%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 5%;
 
-    --destructive: 0 100% 50%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 100% 50%;  /* keep destructive red */
+    --destructive-foreground: 0 0% 90%;
 
-    --ring: 215 20.2% 65.1%;
+    --ring: 0 0% 20%;
 
     --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 5%; /* very dark gray / near black */
+
+    --sidebar-foreground: 0 0% 20%;
+
+    --sidebar-primary: 0 0% 5%;
+
+    --sidebar-primary-foreground: 0 0% 90%;
+
+    --sidebar-accent: 0 0% 10%;
+
+    --sidebar-accent-foreground: 0 0% 5%;
+
+    --sidebar-border: 0 0% 10%;
+
+    --sidebar-ring: 0 0% 30%;
   }
 
   .dark {
-    --background: 300 100% 0.2%;
-    --foreground: 213 31% 91%;
+    /* Since background is black already, dark can remain similar or just tweak if you want */
+    --background: 0 0% 0%;      /* black */
+    --foreground: 0 0% 90%;     /* white */
 
-    --muted: 223 47% 11%;
-    --muted-foreground: 215.4 16.3% 56.9%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 216 34% 17%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 90%;
 
-    --popover: 224 71% 4%;
-    --popover-foreground: 215 20.2% 65.1%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 30%;
 
-    --border: 216 34% 17%;
-    --input: 216 34% 17%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
 
-    --card: 224 71% 4%;
-    --card-foreground: 213 31% 91%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 90%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 1.2%;
+    --primary: 0 0% 90%;
+    --primary-foreground: 0 0% 5%;
 
-    --secondary: 222.2 47.4% 11.2%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 5%;
+    --secondary-foreground: 0 0% 90%;
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 63% 31%;    /* keep red */
+    --destructive-foreground: 0 0% 90%;
 
-    --ring: 216 34% 17%;
+    --ring: 0 0% 15%;
 
     --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 5%;
+
+    --sidebar-foreground: 0 0% 90%;
+
+    --sidebar-primary: 0 0% 30%;
+
+    --sidebar-primary-foreground: 0 0% 100%;
+
+    --sidebar-accent: 0 0% 15%;
+
+    --sidebar-accent-foreground: 0 0% 90%;
+
+    --sidebar-border: 0 0% 15%;
+
+    --sidebar-ring: 0 0% 30%;
   }
 }
+
 
 @layer base {
   * {
@@ -77,33 +111,49 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 }
 
 @layer utilities {
   .glass {
-    @apply bg-zinc-950/10 backdrop-blur-xl rounded-3xl shadow-lg;
+    @apply border border-white/30 rounded-3xl shadow-lg ;
   }
-  
+
   .glass-card {
-    @apply bg-white/5 backdrop-blur-xl rounded-3xl  shadow-2xl;
+    @apply bg-neutral-900/10 border border-white/20 backdrop-blur-xl rounded-3xl  shadow-lg;
   }
-  
+
   .neon-glow {
-    box-shadow: 0 0 35px rgba(2, 243, 90, 0.371), 0 0 10px rgba(14, 165, 233, 0.377);
+    box-shadow:
+      0 0 35px rgba(16, 185, 129, 0.371),
+      0 0 10px rgba(16, 185, 129, 0.377);
   }
-  
+
   .neon-glow-green {
-    box-shadow: 0 0 20px rgba(2, 250, 93, 0.3), 0 0 40px rgba(34, 197, 94, 0.1);
+    box-shadow:
+    0 0 35px rgba(2, 243, 90, 0.371),
+    0 0 10px rgba(14, 165, 233, 0.377);
   }
-  
+
   .neon-glow-red {
-    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3), 0 0 40px rgba(239, 68, 68, 0.1);
+    box-shadow:
+      0 0 35px rgba(251, 2, 2, 0.742),
+      0 0 10px rgba(239, 68, 68, 0.1);
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-green-400 via-sky-500 to-green-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-emerald-400 via-cyan-500 to-emerald-400 bg-clip-text text-transparent;
+  }
+
+  /* globals.css */
+  .bg-grid-squares {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
   .animate-float {
@@ -115,7 +165,8 @@
   }
 
   @keyframes float {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0px);
     }
     50% {
