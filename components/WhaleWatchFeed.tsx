@@ -77,7 +77,7 @@ export default function WhaleWatchFeed({
 
   return (
     <div className="p-">
-      <div className=" flex items-center justify-between mt-4">
+      <div className=" flex items-center justify-between mt-4 mb-6">
         <div className="flex items-center gap-3">
           <div
             className={`h-3 w-3 rounded-full ${
@@ -88,9 +88,10 @@ export default function WhaleWatchFeed({
             Recent USDT Transfers
           </h2>
         </div>
+        {isProduction && (
         <p className="text-sm text-yellow-400 italic">
           Mock Data — Under Production
-        </p>
+        </p>)}
         <div className="flex items-center gap-4">
           <Badge
             variant="outline"
