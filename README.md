@@ -1,9 +1,9 @@
-# ⚡ DegenVision
+# DegenVision
 
 Leverage real-time on-chain wallet activity and AI-powered insights to make strategic predictions.  
 Test your foresight against the market and climb the leaderboard.
 
-![DegenVision Banner](https://your-banner-link-if-any.com)
+
 
 ## 🎯 Overview
 
