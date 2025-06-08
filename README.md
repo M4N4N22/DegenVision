@@ -100,7 +100,7 @@ Using **Nodit** not just for consumption but **for creation of game mechanics** 
 
 ## 📂 Project Structure
 
-```text
+```
 /degenvision
 ├── app/                   # Next.js App Router (pages, layouts, routing)
 ├── components/            # Reusable UI components (ShadCN + custom)
@@ -119,7 +119,7 @@ Using **Nodit** not just for consumption but **for creation of game mechanics** 
 ├── pnpm-lock.yaml         # pnpm lock file
 ├── package.json           # Dependencies and scripts
 └── README.md              # You're reading it!
-
+```
 ---
 
 ## 🛠️ Tech Stack
