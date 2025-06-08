@@ -177,7 +177,7 @@ export default function WhalePredictionPanel({
 
       {phase === "active" && (
         <>
-          <p className="mb-2 text-white/70">Select your range to bet:</p>
+          <p className="mb-2 text-white/70">Select your range to predict:</p>
           <div className="grid grid-cols-1 gap-3">
             {RANGE_OPTIONS.map((range) => {
               const isSelected = userRange?.label === range.label
@@ -201,7 +201,7 @@ export default function WhalePredictionPanel({
             })}
           </div>
           <p className="mt-4 text-sm text-white/50">
-            ⏳ Time left to place bet:{" "}
+            ⏳ Time left to lock prediction:{" "}
             <span className="text-white">{timeRemaining}s</span>
           </p>
         </>
@@ -212,7 +212,7 @@ export default function WhalePredictionPanel({
           <p className="text-white/70">
             Your bet:{" "}
             <span className="font-semibold text-white">
-              {userRange ? `${userRange.label} USDT` : "No bet placed"}
+              {userRange ? `${userRange.label} USDT` : "No prediction locked"}
             </span>
           </p>
           <p className="text-white/70">
