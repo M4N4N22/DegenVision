@@ -1,6 +1,6 @@
 import { spawn } from "child_process"
 
-const NODIT_API_KEY = "FWa1ZAsUaFNOvN3W6mbf3eQ8ISYM4QJ7"
+const NODIT_API_KEY = ""
 
 async function runMCP() {
   const mcp = spawn("npx", ["@noditlabs/nodit-mcp-server@latest"], {
