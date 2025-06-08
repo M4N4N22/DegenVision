@@ -27,16 +27,16 @@ const TokenBalance = () => {
           <DollarSign className="w-8 h-8 text-green-400" />
           <span className="text-4xl font-bold text-green-400">${usdcBalance.toFixed(2)}</span>
         </div>
-        <p className="text-gray-400">Available USDC</p>
+        <p className="text-white/50">Available USDC</p>
       </div>
 
       {/* Alpha Tokens */}
       <div className="glass p-4 rounded-xl mb-6 text-center">
         <div className="flex items-center justify-center gap-2 mb-1">
           <Coins className="w-6 h-6 text-yellow-400" />
-          <span className="text-2xl font-bold gradient-text">{alphaTokens.toLocaleString()}</span>
+          <span className="text-2xl font-bold text-emerald-500">{alphaTokens.toLocaleString()}</span>
         </div>
-        <p className="text-sm text-gray-400">Alpha Tokens</p>
+        <p className="text-sm text-white/50">Alpha Tokens</p>
       </div>
 
       {/* Stats Grid */}
@@ -46,7 +46,7 @@ const TokenBalance = () => {
             <TrendingUp className="w-4 h-4 text-green-400" />
             <span className="text-lg font-bold text-green-400">+${todayEarnings.toFixed(2)}</span>
           </div>
-          <p className="text-xs text-gray-400">Today's Profit</p>
+          <p className="text-xs text-white/50">Today's Profit</p>
         </div>
         
         <div className="glass p-4 rounded-xl text-center">
@@ -54,14 +54,14 @@ const TokenBalance = () => {
             <Award className="w-4 h-4 text-purple-400" />
             <span className="text-lg font-bold text-purple-400">#{rank}</span>
           </div>
-          <p className="text-xs text-gray-400">Global Rank</p>
+          <p className="text-xs text-white/50">Global Rank</p>
         </div>
       </div>
 
       {/* Total Profit */}
       <div className="glass p-4 rounded-xl mb-6">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm text-gray-400">Total Profit</span>
+          <span className="text-sm text-white/50">Total Profit</span>
           <span className="font-bold text-green-400 text-lg">+${totalProfit.toFixed(2)}</span>
         </div>
         <div className="w-full bg-gray-700 rounded-full h-2">
@@ -75,7 +75,7 @@ const TokenBalance = () => {
       {/* Win Rate */}
       <div className="glass p-4 rounded-xl mb-6">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm text-gray-400">Prediction Accuracy</span>
+          <span className="text-sm text-white/50">Prediction Accuracy</span>
           <span className="font-bold text-green-400">{winRate}%</span>
         </div>
         <div className="w-full bg-gray-700 rounded-full h-2">
@@ -88,7 +88,7 @@ const TokenBalance = () => {
 
       {/* Achievement Badges */}
       <div className="pt-4 border-t border-white/10">
-        <p className="text-sm text-gray-400 mb-3">Recent Achievements</p>
+        <p className="text-sm text-white/50 mb-3">Recent Achievements</p>
         <div className="flex flex-wrap gap-2">
           <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/20">
             Streak Master

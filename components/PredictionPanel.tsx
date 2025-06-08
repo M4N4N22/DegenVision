@@ -12,10 +12,9 @@ import {
   Trophy,
   Zap,
 } from "lucide-react"
-import { FaEthereum } from "react-icons/fa";
+import { FaEthereum } from "react-icons/fa"
 
-
-import { useEthPrice } from "@/hooks/useEthPrice"
+import { useTokenPrice } from "@/hooks/useEthPrice"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -35,7 +34,10 @@ interface PredictionOption {
   gradient: string
 }
 
-const PredictionPanel = () => {
+interface PredictionPanelProps {
+  cryptoName: string
+}
+const PredictionPanel = ({ cryptoName }: PredictionPanelProps) => {
   const [selectedPrediction, setSelectedPrediction] = useState<string | null>(
     null
   )
@@ -55,7 +57,10 @@ const PredictionPanel = () => {
   const [endingRound, setEndingRound] = useState(false)
 
   // Mock current ETH price and multipliers
-  const { data, loading, fetchPrice } = useEthPrice()
+  const { data, loading, fetchPrice } = useTokenPrice(
+    cryptoName.toLowerCase(),
+    "usd"
+  )
   const currentEthPrice = data?.currentPrice ?? null
 
   const baseMultiplier = 1.9
@@ -193,13 +198,14 @@ const PredictionPanel = () => {
   }
 
   return (
-    <div className="glass-card p-6">
+    <div className=" p-6">
       <div className="flex items-center justify-between mb-4">
         <div>
           <h2 className="text-xl font-bold text-white mb-1">
-            ETH Price Prediction
+            {cryptoName} Price Prediction
           </h2>
-          <p className="text-sm text-gray-400 items-center gap-2 hidden">
+
+          <p className="text-sm text-white/50 items-center gap-2 hidden">
             Current ETH:{" "}
             {loading ? (
               <span className="text-yellow-300 animate-pulse ml-1">
@@ -222,9 +228,9 @@ const PredictionPanel = () => {
           </button>
         </div>
         <div className="text-right flex items-center gap-2">
-          <div className="flex items-center gap-1 ">
+          <div className=" items-center gap-1 hidden">
             <Target className="w-4 h-4 text-blue-400" />
-            <span className="text-sm text-gray-400">Round #{currentRound}</span>
+            <span className="text-sm text-white/50">Round #{currentRound}</span>
           </div>
           <Badge
             variant="outline"
@@ -258,7 +264,7 @@ const PredictionPanel = () => {
             variant="outline"
             size="sm"
             onClick={() => setAutoRoundMode(!autoRoundMode)}
-            className={`border-white/20 text-xs rounded-xl ${autoRoundMode ? "bg-purple-500/20 text-purple-400" : "text-gray-400"}`}
+            className={`border-white/20 text-xs rounded-xl ${autoRoundMode ? "bg-purple-500/20 text-purple-400" : "text-white/50"}`}
           >
             {autoRoundMode ? "ON" : "OFF"}
           </Button>
@@ -269,7 +275,7 @@ const PredictionPanel = () => {
           <h3 className="text-white text-lg font-semibold">
             {startingRound ? "Starting round..." : "Calculating result..."}
           </h3>
-          <p className="text-gray-400 mt-2">Please wait a moment.</p>
+          <p className="text-white/50 mt-2">Please wait a moment.</p>
         </div>
       )}
 
@@ -279,8 +285,8 @@ const PredictionPanel = () => {
           <div className="glass-card p-4 flex flex-col justify-start h-fit mt-4">
             <div>
               {/* Heading about what prediction means */}
-              <h3 className="text-white text-sm font-semibold mb-4 text-center md:text-left flex gap-2 items-center">
-                <FaEthereum className="text-emerald-500"/>Predict ETH Price Direction
+              <h3 className="text-white text-sm font-semibold mb-4 text-center md:text-left flex items-center">
+                Predict {cryptoName} Price Direction
               </h3>
 
               {/* Side-by-side buttons for Up and Down */}
@@ -318,7 +324,7 @@ const PredictionPanel = () => {
                 className="w-full  rounded-full bg-emerald-500 hover:bg-emerald-600 text-background h-14 text-base font-bold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <div className="w-full flex justify-between items-center px-4 ">
-                  <span >Lock Prediction</span>
+                  <span>Lock Prediction</span>
                   <span>${stakeAmount.toFixed(2)}</span>
                 </div>
               </Button>
@@ -425,13 +431,13 @@ const PredictionPanel = () => {
           <div className="glass p-4 rounded-xl">
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
-                <div className="text-sm text-gray-400">Start Price</div>
+                <div className="text-sm text-white/50">Start Price</div>
                 <div className="text-lg font-bold text-white">
                   ${startPrice?.toFixed(2)}
                 </div>
               </div>
               <div>
-                <div className="text-sm text-gray-400">Your Prediction</div>
+                <div className="text-sm text-white/50">Your Prediction</div>
                 <div
                   className={`text-lg font-bold ${selectedPrediction === "up" ? "text-green-400" : "text-red-400"}`}
                 >
@@ -439,8 +445,8 @@ const PredictionPanel = () => {
                 </div>
               </div>
               <div>
-                <div className="text-sm text-gray-400">Stake</div>
-                <div className="text-lg font-bold text-purple-400">
+                <div className="text-sm text-white/50">Stake</div>
+                <div className="text-lg font-bold text-primary">
                   ${stakeAmount.toFixed(2)}
                 </div>
               </div>
@@ -450,7 +456,6 @@ const PredictionPanel = () => {
           {/* Countdown Timer */}
           <div className=" p-4 rounded-xl text-center">
             <div className="flex items-center justify-center gap-2 mb-2">
-              <Timer className="w-5 h-5 text-blue-400" />
               <span className="text-lg font-bold">Time Remaining</span>
             </div>
             <div className="text-4xl font-mono font-bold text-white ">
@@ -536,26 +541,26 @@ const PredictionPanel = () => {
           <div className="glass p-4 rounded-xl">
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
-                <div className="text-sm text-gray-400">Start Price</div>
+                <div className="text-sm text-white/50">Start Price</div>
                 <div className="text-lg font-bold text-white">
                   ${startPrice?.toFixed(2)}
                 </div>
               </div>
               <div>
-                <div className="text-sm text-gray-400">End Price</div>
+                <div className="text-sm text-white/50">End Price</div>
                 <div className="text-lg font-bold text-white">
                   ${endPrice.toFixed(2)}
                 </div>
               </div>
               <div>
-                <div className="text-sm text-gray-400">Change</div>
+                <div className="text-sm text-white/50">Change</div>
                 <div
                   className={`text-lg font-bold ${
                     endPrice > (startPrice || 0)
                       ? "text-green-400"
                       : endPrice < (startPrice || 0)
                         ? "text-red-400"
-                        : "text-gray-400"
+                        : "text-white/50"
                   }`}
                 >
                   {endPrice > (startPrice || 0) ? "+" : ""}$
@@ -568,7 +573,7 @@ const PredictionPanel = () => {
           <div className="flex gap-3">
             <Button
               onClick={resetRound}
-               className="w-full  rounded-full bg-emerald-500 hover:bg-emerald-600 text-background h-14 text-base font-bold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full  rounded-full bg-emerald-500 hover:bg-emerald-600 text-background h-14 text-base font-bold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               New Round
             </Button>

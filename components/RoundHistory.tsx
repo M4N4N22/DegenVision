@@ -114,12 +114,12 @@ const RoundHistory = () => {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h2 className="text-xl font-bold text-white mb-1">Round History</h2>
-          <p className="text-sm text-gray-400">Your recent predictions</p>
+          <p className="text-sm text-white/50">Your recent predictions</p>
         </div>
         <div className="text-right">
           <div className="flex items-center gap-2 mb-1">
             <Trophy className="w-4 h-4 text-yellow-400" />
-            <span className="text-sm text-gray-400">Win Rate</span>
+            <span className="text-sm text-white/50">Win Rate</span>
           </div>
           <div className="text-lg font-bold gradient-text">{winRate}%</div>
         </div>
@@ -128,15 +128,15 @@ const RoundHistory = () => {
       {/* Summary Stats */}
       <div className="grid grid-cols-3 gap-3 mb-4">
         <div className="glass p-3 rounded-xl text-center">
-          <div className="text-sm text-gray-400">Staked</div>
+          <div className="text-sm text-white/50">Staked</div>
           <div className="text-lg font-bold text-purple-400">${totalStaked.toFixed(2)}</div>
         </div>
         <div className="glass p-3 rounded-xl text-center">
-          <div className="text-sm text-gray-400">Won</div>
+          <div className="text-sm text-white/50">Won</div>
           <div className="text-lg font-bold text-green-400">${totalWon.toFixed(2)}</div>
         </div>
         <div className="glass p-3 rounded-xl text-center">
-          <div className="text-sm text-gray-400">Net P&L</div>
+          <div className="text-sm text-white/50">Net P&L</div>
           <div className={`text-lg font-bold ${netProfit >= 0 ? 'text-green-400' : 'text-red-400'}`}>
             {netProfit >= 0 ? '+' : ''}${netProfit.toFixed(2)}
           </div>
@@ -150,40 +150,40 @@ const RoundHistory = () => {
               <div className="flex items-center gap-2">
                 <Target className="w-4 h-4 text-blue-400" />
                 <span className="text-sm font-medium text-white">Round #{round.id}</span>
-                <span className="text-xs text-gray-400">{round.timestamp}</span>
+                <span className="text-xs text-white/50">{round.timestamp}</span>
               </div>
               {getResultBadge(round.result)}
             </div>
             
             <div className="grid grid-cols-2 gap-4 text-xs mb-3">
               <div>
-                <div className="text-gray-400">Prediction</div>
+                <div className="text-white/50">Prediction</div>
                 <div className="flex items-center gap-1 text-white">
                   {getPredictionIcon(round.prediction)}
                   {round.prediction.toUpperCase()}
                 </div>
               </div>
               <div>
-                <div className="text-gray-400">Duration</div>
+                <div className="text-white/50">Duration</div>
                 <div className="text-white">{round.duration}</div>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4 text-xs mb-3">
               <div>
-                <div className="text-gray-400">Price Movement</div>
+                <div className="text-white/50">Price Movement</div>
                 <div className={`font-medium ${
                   round.endPrice > round.startPrice ? 'text-green-400' : 
-                  round.endPrice < round.startPrice ? 'text-red-400' : 'text-gray-400'
+                  round.endPrice < round.startPrice ? 'text-red-400' : 'text-white/50'
                 }`}>
                   ${round.startPrice.toFixed(2)} → ${round.endPrice.toFixed(2)}
                 </div>
               </div>
               <div>
-                <div className="text-gray-400">Change</div>
+                <div className="text-white/50">Change</div>
                 <div className={`font-medium ${
                   round.endPrice > round.startPrice ? 'text-green-400' : 
-                  round.endPrice < round.startPrice ? 'text-red-400' : 'text-gray-400'
+                  round.endPrice < round.startPrice ? 'text-red-400' : 'text-white/50'
                 }`}>
                   {round.endPrice > round.startPrice ? '+' : ''}
                   ${(round.endPrice - round.startPrice).toFixed(2)}
@@ -195,15 +195,15 @@ const RoundHistory = () => {
             <div className="pt-3 border-t border-white/10">
               <div className="grid grid-cols-3 gap-4 text-xs">
                 <div>
-                  <div className="text-gray-400">Stake</div>
+                  <div className="text-white/50">Stake</div>
                   <div className="text-purple-400 font-medium">${round.stakeAmount.toFixed(2)}</div>
                 </div>
                 <div>
-                  <div className="text-gray-400">Multiplier</div>
+                  <div className="text-white/50">Multiplier</div>
                   <div className="text-blue-400 font-medium">x{round.multiplier}</div>
                 </div>
                 <div>
-                  <div className="text-gray-400">Result</div>
+                  <div className="text-white/50">Result</div>
                   <div className={`font-medium ${
                     round.result === 'won' ? 'text-green-400' :
                     round.result === 'lost' ? 'text-red-400' : 'text-yellow-400'
@@ -220,7 +220,7 @@ const RoundHistory = () => {
       </div>
 
       <div className="mt-4 text-center">
-        <div className="text-sm text-gray-400">
+        <div className="text-sm text-white/50">
           {wonRounds} wins • {totalRounds - wonRounds} losses • {netProfit >= 0 ? 'Profitable' : 'Loss'} session
         </div>
       </div>

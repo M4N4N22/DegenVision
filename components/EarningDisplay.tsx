@@ -38,17 +38,17 @@ const EarningsDisplay = () => {
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <div className="flex items-center gap-3">
-          <BarChart3 className="w-5 h-5 text-blue-400" />
+          <BarChart3 className="w-5 h-5 text-primary" />
           <div>
             <h3 className="text-lg font-bold text-white">Earnings Summary</h3>
-            <p className="text-sm text-gray-400">{earningsData.roundsPlayed} rounds played</p>
+            <p className="text-sm text-white/50">{earningsData.roundsPlayed} rounds played</p>
           </div>
         </div>
         <div className="text-right">
           <div className={`text-xl font-bold ${earningsData.netProfit >= 0 ? 'text-green-400' : 'text-red-400'}`}>
             {earningsData.netProfit >= 0 ? '+' : ''}${earningsData.netProfit.toFixed(2)}
           </div>
-          <div className="text-sm text-gray-400">Net P&L</div>
+          <div className="text-sm text-white/50">Net P&L</div>
         </div>
       </div>
 
@@ -56,19 +56,19 @@ const EarningsDisplay = () => {
       <div className="grid grid-cols-4 gap-3 mt-4">
         <div className="glass p-3 rounded-xl text-center">
           <div className="text-green-400 font-bold text-lg">${earningsData.totalWon.toFixed(2)}</div>
-          <div className="text-xs text-gray-400">Total Won</div>
+          <div className="text-xs text-white/50">Total Won</div>
         </div>
         <div className="glass p-3 rounded-xl text-center">
           <div className="text-red-400 font-bold text-lg">${earningsData.totalLost.toFixed(2)}</div>
-          <div className="text-xs text-gray-400">Total Lost</div>
+          <div className="text-xs text-white/50">Total Lost</div>
         </div>
         <div className="glass p-3 rounded-xl text-center">
-          <div className="text-purple-400 font-bold text-lg">{earningsData.winRate.toFixed(1)}%</div>
-          <div className="text-xs text-gray-400">Win Rate</div>
+          <div className="text-primary font-bold text-lg">{earningsData.winRate.toFixed(1)}%</div>
+          <div className="text-xs text-white/50">Win Rate</div>
         </div>
         <div className="glass p-3 rounded-xl text-center">
           <div className="text-yellow-400 font-bold text-lg">{earningsData.winStreak}</div>
-          <div className="text-xs text-gray-400">Streak</div>
+          <div className="text-xs text-white/50">Streak</div>
         </div>
       </div>
 
@@ -79,27 +79,27 @@ const EarningsDisplay = () => {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-3">
               <div className="flex justify-between">
-                <span className="text-gray-400">Total Staked:</span>
+                <span className="text-white/50">Total Staked:</span>
                 <span className="text-white font-medium">${earningsData.totalStaked.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">Profit Margin:</span>
+                <span className="text-white/50">Profit Margin:</span>
                 <span className={`font-medium ${profitMargin >= 0 ? 'text-green-400' : 'text-red-400'}`}>
                   {profitMargin >= 0 ? '+' : ''}{profitMargin.toFixed(1)}%
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">Best Streak:</span>
+                <span className="text-white/50">Best Streak:</span>
                 <span className="text-yellow-400 font-medium">{earningsData.bestStreak} wins</span>
               </div>
             </div>
             <div className="space-y-3">
               <div className="flex justify-between">
-                <span className="text-gray-400">Avg Stake:</span>
+                <span className="text-white/50">Avg Stake:</span>
                 <span className="text-white font-medium">${earningsData.avgStake.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">Preferred:</span>
+                <span className="text-white/50">Preferred:</span>
                 <div className="flex items-center gap-1">
                   {earningsData.mostFrequentPrediction === 'UP' ? 
                     <TrendingUp className="w-4 h-4 text-green-400" /> :
@@ -109,7 +109,7 @@ const EarningsDisplay = () => {
                 </div>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">Rounds:</span>
+                <span className="text-white/50">Rounds:</span>
                 <span className="text-white font-medium">{earningsData.roundsPlayed}</span>
               </div>
             </div>
@@ -117,7 +117,7 @@ const EarningsDisplay = () => {
 
           {/* Recent Performance */}
           <div className="pt-4 border-t border-white/10">
-            <h4 className="text-sm text-gray-400 mb-3 flex items-center gap-2">
+            <h4 className="text-sm text-white/50 mb-3 flex items-center gap-2">
               <Target className="w-4 h-4" />
               Last 5 Rounds
             </h4>
@@ -130,7 +130,7 @@ const EarningsDisplay = () => {
                     }`}>
                       {round.result === 'won' ? 'W' : 'L'}
                     </Badge>
-                    <span className="text-gray-400">Stake: ${round.stake.toFixed(2)}</span>
+                    <span className="text-white/50">Stake: ${round.stake.toFixed(2)}</span>
                   </div>
                   <span className={`font-medium ${
                     round.result === 'won' ? 'text-green-400' : 'text-red-400'
@@ -149,7 +149,7 @@ const EarningsDisplay = () => {
                 <Trophy className="w-4 h-4 text-yellow-400" />
                 <span className="text-yellow-400 font-medium">Hot Streak Active!</span>
               </div>
-              <p className="text-xs text-gray-400 mt-1">
+              <p className="text-xs text-white/50 mt-1">
                 {earningsData.winStreak} consecutive wins. Keep it going!
               </p>
             </div>

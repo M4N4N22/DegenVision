@@ -7,20 +7,20 @@
     --background: 0 0% 0%; /* pure black */
 
     /* Whites with different lightness to simulate white opacity */
-    --foreground: 0 0% 5%;      /* white/5 */
-    --muted: 0 0% 10%;          /* white/10 */
-    --muted-foreground: 0 0% 20%; 
+    --foreground: 0 0% 5%; /* white/5 */
+    --muted: 0 0% 10%; /* white/10 */
+    --muted-foreground: 0 0% 20%;
 
-    --popover: 0 0% 100%;       /* pure white */
+    --popover: 0 0% 100%; /* pure white */
     --popover-foreground: 0 0% 5%;
 
     --border: 0 0% 10%;
     --input: 0 0% 10%;
 
-    --card: 0 0% 100%;          /* pure white */
+    --card: 0 0% 100%; /* pure white */
     --card-foreground: 0 0% 5%;
 
-    --primary: 0 0% 5%;
+    --primary: 160 84% 43%;
     --primary-foreground: 0 0% 90%;
 
     --secondary: 0 0% 10%;
@@ -29,7 +29,7 @@
     --accent: 0 0% 10%;
     --accent-foreground: 0 0% 5%;
 
-    --destructive: 0 100% 50%;  /* keep destructive red */
+    --destructive: 0 100% 50%; /* keep destructive red */
     --destructive-foreground: 0 0% 90%;
 
     --ring: 0 0% 20%;
@@ -55,8 +55,8 @@
 
   .dark {
     /* Since background is black already, dark can remain similar or just tweak if you want */
-    --background: 0 0% 0%;      /* black */
-    --foreground: 0 0% 90%;     /* white */
+    --background: 0 0% 0%; /* black */
+    --foreground: 0 0% 90%; /* white */
 
     --muted: 0 0% 20%;
     --muted-foreground: 0 0% 40%;
@@ -73,13 +73,13 @@
     --card: 0 0% 10%;
     --card-foreground: 0 0% 90%;
 
-    --primary: 0 0% 90%;
+    --primary: 160 84% 43%;
     --primary-foreground: 0 0% 5%;
 
     --secondary: 0 0% 5%;
     --secondary-foreground: 0 0% 90%;
 
-    --destructive: 0 63% 31%;    /* keep red */
+    --destructive: 0 63% 31%; /* keep red */
     --destructive-foreground: 0 0% 90%;
 
     --ring: 0 0% 15%;
@@ -104,7 +104,6 @@
   }
 }
 
-
 @layer base {
   * {
     @apply border-border;
@@ -119,7 +118,7 @@
 
 @layer utilities {
   .glass {
-    @apply border border-white/30 rounded-3xl shadow-lg ;
+    @apply border border-white/30 rounded-3xl shadow-lg;
   }
 
   .glass-card {
@@ -134,8 +133,8 @@
 
   .neon-glow-green {
     box-shadow:
-    0 0 35px rgba(2, 243, 90, 0.371),
-    0 0 10px rgba(14, 165, 233, 0.377);
+      0 0 35px rgba(2, 243, 90, 0.371),
+      0 0 10px rgba(14, 165, 233, 0.377);
   }
 
   .neon-glow-red {

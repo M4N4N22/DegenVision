@@ -7,7 +7,9 @@ import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-import WalletProvider from "@/app/providers/wallet-provider"
+
+
+import ClientLayout from "./client-layout"
 
 export const metadata: Metadata = {
   title: {
@@ -35,9 +37,9 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   if (typeof window === "undefined") {
-    console.log("Server fontSans.variable:", fontSans.variable)
+    
   } else {
-    console.log("Client fontSans.variable:", fontSans.variable)
+  
   }
 
   return (
@@ -51,12 +53,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <WalletProvider>
-            <div className="relative flex min-h-screen flex-col">
-              <main className="flex-1">{children}</main>
-            </div>
+
+            <ClientLayout>{children}</ClientLayout>
             <TailwindIndicator />
-          </WalletProvider>
+
         </ThemeProvider>
       </body>
     </html>
