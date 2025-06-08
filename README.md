@@ -119,3 +119,19 @@ Using **Nodit** not just for consumption but **for creation of game mechanics** 
 ├── pnpm-lock.yaml         # pnpm lock file
 ├── package.json           # Dependencies and scripts
 └── README.md              # You're reading it!
+
+---
+
+## 🛠️ Tech Stack
+
+| Tech        | Purpose                              |
+|-------------|--------------------------------------|
+| **Next.js** | App framework with App Router        |
+| **TailwindCSS + ShadCN** | Design system & UI     |
+| **Nodit Streams API** | Live blockchain insights   |
+| **Nodit MCP** | AI + market context enrichment     |
+| **TypeScript** | Strong types across the codebase |
+| **WebSocket** | Real-time data communication       |
+| **pnpm**     | Package management                  |
+
+---
