@@ -1,116 +1,86 @@
-"use client"
+// app/predict/page.tsx
 
-import { useState } from "react"
-import { FaEthereum } from "react-icons/fa";
+import Link from "next/link"
+import { FaChartLine } from "react-icons/fa"
+import { GiPoisonGas, GiWhaleTail } from "react-icons/gi"
+import { MdGeneratingTokens,MdToken  } from "react-icons/md"
 
-import ETHChart from "@/components/ETHChart"
-import EthPriceCard from "@/components/EthPriceCard"
-import LiveStream from "@/components/LiveStream"
-import NetworkPulse from "@/components/NetworkPulse"
-import PredictionBarChart from "@/components/PredictionBarChart"
-import PredictionPanel from "@/components/PredictionPanel"
+import { cn } from "@/lib/utils"
 
-const Predict = () => {
-  const currentPrice = 3247.82
-  const priceChange = 45.23
-  const priceChangePercent = 1.41
+const predictionOptions = [
+  {
+    icon: <FaChartLine size={32} className="text-primary" />,
+    title: "ETH Up or Down",
+    description:
+      "Predict whether ETH price will go up or down. Choose your timeframe from 30 seconds to 1 hour.",
+    href: "/predict/up-down",
+  },
+  {
+    icon: <GiWhaleTail size={32} className="text-primary" />,
+    title: "Whale Watch",
+    description:
+      "Predict the sum of the next 10 large USDT whale transactions (≥ 2,000 USDT). Choose your range and win multipliers if your guess is right!",
+    href: "/predict/whale-watch",
+  },
 
+  {
+    icon: <GiPoisonGas size={32} className="text-primary" />,
+    title: "Gas Gambit",
+    description:
+      "Predict Ethereum network congestion by estimating gas usage in upcoming blocks. Test your mempool intuition.",
+    href: "/predict/gas-gambit",
+  },
+  {
+    icon: <MdToken size={32} className="text-primary" />,
+    title: "Token War",
+    description:
+      "Predict which token will dominate net inflows or outflows. Stay ahead of shifts in market sentiment.",
+    href: "/predict/token-war",
+  },
+]
+
+export default function PredictPage() {
   return (
-    <div className="space-y-4">
-      {/* Top Row: ETH Price Widget + Prediction Panel */}
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-4">
-        {/* Left: ETH Chart + Social Signals */}
-        <div className="space-y-4">
-          <div className="flex items-center">
-          <FaEthereum className="text-emerald-500 text-5xl"/>
-          <div>
-            <h1 className="text-4xl font-bold tracking-tight text-emerald-500 ">
-            ETH Prediction <span className="text-white">Arena</span>
-            </h1>
-            <p className="text-gray-300 text-base max-w-prose">
-              Predict real-time ETH price movement — powered by{" "}
-              <span className="font-semibold text-white">Nodit</span>
-            </p></div>
-          </div>
+    <div className="min-h-screen flex flex-col items-center bg-grid-squares">
+      <h1 className="text-4xl tracking-tighter font-extrabold text-emerald-500 leading-none flex mb-2">
+        <span>DEGEN</span>
+        <span className="text-white">VISION</span>
+      </h1>
+      <p className="text-white/60 text-lg mb-8  text-center">
+        Stake your assets, predict the chain, and win real payouts.
+      </p>
 
-          <EthPriceCard />
-          <ETHChart />
-
-          <PredictionBarChart />
-        </div>
-
-        {/* Right: Sticky Prediction Panel */}
-        <aside className="sticky top-0 self-start ">
-          <PredictionPanel />
-        </aside>
-      </div>
-
-      {/* Mini Live Activity Feed */}
-      <div className="glass-card p-6">
-        <div>
-          <h1 className="text-lg">Recent Activity</h1>
-        </div>
-        <div className="space-y-3">
-          {[
-            {
-              user: "User123",
-              prediction: "UP",
-              amount: "$5.00",
-              time: "2m ago",
-              result: "won",
-            },
-            {
-              user: "TraderX",
-              prediction: "DOWN",
-              amount: "$2.50",
-              time: "3m ago",
-              result: "lost",
-            },
-            {
-              user: "CryptoKing",
-              prediction: "UP",
-              amount: "$10.00",
-              time: "5m ago",
-              result: "won",
-            },
-          ].map((activity, i) => (
-            <div
-              key={i}
-              className="flex items-center justify-between py-2 border-b border-white/10 last:border-0"
-            >
-              <div className="flex items-center gap-3">
-                <div className="text-sm font-medium text-gray-300">
-                  {activity.user}
-                </div>
-                <div
-                  className={`text-xs px-2 py-1 rounded ${
-                    activity.prediction === "UP"
-                      ? "bg-green-500/20 text-green-400"
-                      : "bg-red-500/20 text-red-400"
-                  }`}
-                >
-                  {activity.prediction}
-                </div>
-                <div className="text-sm text-gray-400">{activity.amount}</div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-3/4 z-10">
+        {predictionOptions.map((option) => (
+          <Link
+            href={option.href}
+            key={option.title}
+            className={cn(
+              "glass-card p-6 space-y-6 flex flex-col justify-between ",
+              " hover:bg-white/5 transition hover:scale-105"
+            )}
+          >
+            <div>
+              <div className="flex items-center gap-2  mb-4">
+                <div className="text-4xl">{option.icon}</div>
+                <h2 className="text-xl font-semibold text-white">
+                  {option.title}
+                </h2>
               </div>
-              <div className="flex items-center gap-2">
-                <div
-                  className={`text-xs px-2 py-1 rounded ${
-                    activity.result === "won"
-                      ? "bg-green-500/20 text-green-400"
-                      : "bg-red-500/20 text-red-400"
-                  }`}
-                >
-                  {activity.result}
-                </div>
-                <div className="text-xs text-gray-500">{activity.time}</div>
-              </div>
+              <p className="text-white/50 mt-8">{option.description}</p>
             </div>
-          ))}
-        </div>
+
+            <div
+              className="inline-block mt-4 text-primary font-semibold border border-primary rounded-3xl px-4 py-2 text-center hover:bg-primary/10 transition"
+              aria-label={`Go to ${option.title} prediction`}
+            >
+              Predict & Win →
+            </div>
+          </Link>
+        ))}
       </div>
+      {/* Bottom gradient overlay */}
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-emerald-900/40 to-transparent"></div>
     </div>
   )
 }
-
-export default Predict

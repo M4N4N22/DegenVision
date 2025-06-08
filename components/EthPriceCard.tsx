@@ -1,9 +1,9 @@
 'use client'
 
-import { useEthPrice } from '@/hooks/useEthPrice'
+import { useTokenPrice } from '@/hooks/useEthPrice'
 
 export default function EthPriceCard() {
-  const { data, loading, fetchPrice } = useEthPrice()
+  const { data, loading, fetchPrice } = useTokenPrice("eth","usd")
 
   return (
     <div className="flex-1 glass-card hidden">
@@ -17,7 +17,7 @@ export default function EthPriceCard() {
                 <h3 className="text-2xl font-bold text-white">
                   ${data.currentPrice.toFixed(2)}
                 </h3>
-                <p className="text-sm text-gray-400">ETH/USD</p>
+                <p className="text-sm text-white/50">ETH/USD</p>
               </div>
               <div
                 className={`flex items-center gap-1 ${
@@ -34,7 +34,7 @@ export default function EthPriceCard() {
                 </span>
               </div>
             </div>
-            <div className="text-xs text-gray-400">
+            <div className="text-xs text-white/50">
               Last updated: {data.lastUpdated}
             </div>
           </div>

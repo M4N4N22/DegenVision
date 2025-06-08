@@ -94,24 +94,24 @@ const LiveStream = () => {
           >
             <div className="flex flex-wrap items-center justify-between gap-4 text-white">
               <div className="flex flex-col">
-                <span className="text-sm text-gray-400">Block Number</span>
+                <span className="text-sm text-white/50">Block Number</span>
                 <span className="font-mono font-bold text-lg">
                   #{block.blockNumber.toLocaleString()}
                 </span>
               </div>
 
               <div className="flex flex-col min-w-[110px]">
-                <span className="text-sm text-gray-400">Transactions</span>
+                <span className="text-sm text-white/50">Transactions</span>
                 <span className="font-semibold">{block.txCount}</span>
               </div>
 
               <div className="flex flex-col min-w-[130px]">
-                <span className="text-sm text-gray-400">Gas Used</span>
+                <span className="text-sm text-white/50">Gas Used</span>
                 <span>{block.gasUsed.toLocaleString()}</span>
               </div>
 
               <div className="flex flex-col min-w-[170px]">
-                <span className="text-sm text-gray-400">Block Hash</span>
+                <span className="text-sm text-white/50">Block Hash</span>
                 <code
                   title={block.hash}
                   className="font-mono truncate cursor-pointer rounded bg-gray-800/70 p-1 text-yellow-400"
@@ -122,7 +122,7 @@ const LiveStream = () => {
               </div>
 
               <div className="flex flex-col min-w-[170px]">
-                <span className="text-sm text-gray-400">Miner</span>
+                <span className="text-sm text-white/50">Miner</span>
                 <code
                   title={block.miner}
                   className="font-mono truncate cursor-pointer rounded bg-gray-800/70 p-1 text-blue-400"
@@ -133,8 +133,8 @@ const LiveStream = () => {
               </div>
 
               <div className="flex flex-col min-w-[130px]">
-                <span className="text-sm text-gray-400 flex items-center gap-1">
-                  <Timer className="size-4 text-gray-400" />
+                <span className="text-sm text-white/50 flex items-center gap-1">
+                  <Timer className="size-4 text-white/50" />
                   Timestamp
                 </span>
                 <span>
@@ -149,37 +149,37 @@ const LiveStream = () => {
             {/* New Block Metadata */}
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-white">
               <div>
-                <span className="text-gray-400">Base Fee Per Gas:</span>{" "}
+                <span className="text-white/50">Base Fee Per Gas:</span>{" "}
                 <span className="font-mono text-green-400">
                   {block.baseFeePerGas}
                 </span>
               </div>
               <div>
-                <span className="text-gray-400">Withdrawals:</span>{" "}
+                <span className="text-white/50">Withdrawals:</span>{" "}
                 <span className="font-semibold">{block.withdrawalCount}</span>
               </div>
               <div>
-                <span className="text-gray-400">Logs:</span>{" "}
+                <span className="text-white/50">Logs:</span>{" "}
                 <span className="font-semibold">{block.logCount}</span>
               </div>
               <div>
-                <span className="text-gray-400">Size:</span>{" "}
+                <span className="text-white/50">Size:</span>{" "}
                 <span className="font-mono">{block.size}</span>
               </div>
               <div>
-                <span className="text-gray-400">Extra Data:</span>{" "}
+                <span className="text-white/50">Extra Data:</span>{" "}
                 <code className="font-mono bg-gray-800/70 px-1 rounded text-yellow-300">
                   {truncateHash(block.extraData, 16)}
                 </code>
               </div>
               <div>
-                <span className="text-gray-400">Blob Gas Used:</span>{" "}
+                <span className="text-white/50">Blob Gas Used:</span>{" "}
                 <span className="font-mono text-pink-300">
                   {block.blobGasUsed}
                 </span>
               </div>
               <div>
-                <span className="text-gray-400">Excess Blob Gas:</span>{" "}
+                <span className="text-white/50">Excess Blob Gas:</span>{" "}
                 <span className="font-mono text-pink-300">
                   {block.excessBlobGas}
                 </span>

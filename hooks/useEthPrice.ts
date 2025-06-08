@@ -1,21 +1,38 @@
 import { useState, useRef } from 'react'
 
-export interface EthPriceData {
+export interface TokenPriceData {
   currentPrice: number
   priceChange: number
   priceChangePercent: number
   lastUpdated: string
 }
 
-export function useEthPrice() {
-  const [data, setData] = useState<EthPriceData | null>(null)
+// You can keep this map if you want for other purposes, but it's not used in the fetch anymore
+const tokenIdMap: Record<string, string> = {
+  eth: "ethereum",
+  usdt: "tether",
+  btc: "bitcoin",
+  sol: "solana",
+  matic: "matic-network",
+  // Add more as needed
+}
+
+export function useTokenPrice(token: string, currency: string) {
+  const [data, setData] = useState<TokenPriceData | null>(null)
   const [loading, setLoading] = useState(false)
   const prevPriceRef = useRef<number | null>(null)
 
   const fetchPrice = async () => {
     try {
       setLoading(true)
-      const res = await fetch('/api/eth-price', { cache: 'no-store' })
+
+      // Pass token symbol directly to backend, e.g., "usdt", "eth"
+      const tokenSymbol = token.toLowerCase()
+
+      const res = await fetch(
+        `/api/token-price?token=${encodeURIComponent(tokenSymbol)}&currency=${encodeURIComponent(currency)}`,
+        { cache: 'no-store' }
+      )
       const json = await res.json()
       const current = Number(json.price)
 
@@ -32,12 +49,11 @@ export function useEthPrice() {
 
       prevPriceRef.current = current
     } catch (err) {
-      console.error('Error fetching ETH price:', err)
+      console.error(`Error fetching ${token.toUpperCase()} price:`, err)
     } finally {
       setLoading(false)
     }
   }
 
-  // No useEffect — this makes it manual only
   return { data, loading, fetchPrice }
 }

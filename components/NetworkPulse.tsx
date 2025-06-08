@@ -44,7 +44,7 @@ export default function NetworkPulse() {
       </h3>
 
       <div className="mb-3">
-        <div className="text-sm text-gray-400 mb-1">Block #{block.blockNumber}</div>
+        <div className="text-sm text-white/50 mb-1">Block #{block.blockNumber}</div>
 
         <div className="flex justify-between mb-1">
           <span className="flex items-center gap-1">

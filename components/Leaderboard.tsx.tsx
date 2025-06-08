@@ -67,7 +67,7 @@ const Leaderboard = () => {
       case 3:
         return <Award className="size-6 text-amber-600" />;
       default:
-        return <span className="text-lg font-bold text-gray-400">#{rank}</span>;
+        return <span className="text-lg font-bold text-white/50">#{rank}</span>;
     }
   };
 
@@ -93,7 +93,7 @@ const Leaderboard = () => {
       case "Expert":
         return "bg-blue-500/20 text-blue-400 border-blue-500/20";
       default:
-        return "bg-gray-500/20 text-gray-400 border-gray-500/20";
+        return "bg-gray-500/20 text-white/50 border-gray-500/20";
     }
   };
 
@@ -131,20 +131,20 @@ const Leaderboard = () => {
                   </div>
                   <div className="mb-3">
                     <div className="text-lg font-bold text-white">{entry.username}</div>
-                    <div className="font-mono text-sm text-gray-400">{entry.wallet}</div>
+                    <div className="font-mono text-sm text-white/50">{entry.wallet}</div>
                   </div>
                   <div className="mb-4">
                     <div className="gradient-text text-2xl font-bold">{entry.tokens.toLocaleString()}</div>
-                    <div className="text-sm text-gray-400">Alpha Tokens</div>
+                    <div className="text-sm text-white/50">Alpha Tokens</div>
                   </div>
                   <div className="mb-4 grid grid-cols-2 gap-3">
                     <div className="glass rounded-lg p-2">
                       <div className="font-bold text-green-400">{entry.winRate}%</div>
-                      <div className="text-xs text-gray-400">Win Rate</div>
+                      <div className="text-xs text-white/50">Win Rate</div>
                     </div>
                     <div className="glass rounded-lg p-2">
                       <div className="font-bold text-yellow-400">{entry.streak}</div>
-                      <div className="text-xs text-gray-400">Streak</div>
+                      <div className="text-xs text-white/50">Streak</div>
                     </div>
                   </div>
                   {entry.badge && (
@@ -174,7 +174,7 @@ const Leaderboard = () => {
                       </div>
                       <div>
                         <div className="font-semibold text-white">{entry.username}</div>
-                        <div className="font-mono text-sm text-gray-400">{entry.wallet}</div>
+                        <div className="font-mono text-sm text-white/50">{entry.wallet}</div>
                       </div>
                       {entry.badge && (
                         <Badge className={getBadgeColor(entry.badge)}>
@@ -186,15 +186,15 @@ const Leaderboard = () => {
                     <div className="flex items-center gap-6">
                       <div className="text-right">
                         <div className="font-bold text-white">{entry.tokens.toLocaleString()}</div>
-                        <div className="text-sm text-gray-400">Tokens</div>
+                        <div className="text-sm text-white/50">Tokens</div>
                       </div>
                       <div className="text-right">
                         <div className="font-bold text-green-400">{entry.winRate}%</div>
-                        <div className="text-sm text-gray-400">Win Rate</div>
+                        <div className="text-sm text-white/50">Win Rate</div>
                       </div>
                       <div className="text-right">
                         <div className="font-bold text-yellow-400">{entry.streak}</div>
-                        <div className="text-sm text-gray-400">Streak</div>
+                        <div className="text-sm text-white/50">Streak</div>
                       </div>
                     </div>
                   </div>

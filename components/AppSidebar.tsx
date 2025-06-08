@@ -2,8 +2,21 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { MdDashboard,MdDynamicFeed,MdSettings ,MdQueryStats   } from "react-icons/md";
+import { FaChartLine } from "react-icons/fa"
+import { GiPoisonGas, GiWhaleTail } from "react-icons/gi"
+import {
+  MdDashboard,
+  MdDynamicFeed,
+  MdQueryStats,
+  MdSettings,
+  MdToken,
+} from "react-icons/md"
 
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible"
 import {
   Sidebar,
   SidebarContent,
@@ -13,34 +26,10 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
-
-const menuItems = [
-  {
-    title: "Predict",
-    url: "/predict",
-    icon: MdQueryStats,
-    description: "Make ETH predictions",
-  },
-  {
-    title: "Dashboard",
-    url: "/dashboard",
-    icon: MdDashboard,
-    description: "View performance",
-  },
-  {
-    title: "Live Feed",
-    url: "/live-feed",
-    icon: MdDynamicFeed,
-    description: "Real-time insights",
-  },
-  {
-    title: "Settings",
-    url: "/settings",
-    icon: MdSettings,
-    description: "Preferences",
-  },
-]
 
 export function AppSidebar() {
   const pathname = usePathname()
@@ -56,25 +45,109 @@ export function AppSidebar() {
 
           <SidebarGroupContent>
             <SidebarMenu>
-              {menuItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={pathname === item.url}
-                    className="h-12 mb-2"
-                  >
-                    <Link href={item.url} className="flex items-center gap-3">
-                      <item.icon className="w-5 h-5" />
-                      <div>
-                        <div>{item.title}</div>
-                        <div className="text-xs text-white/50 hidden">
-                          {item.description}
-                        </div>
+              {/* Collapsible PREDICT section */}
+
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  isActive={pathname.startsWith("/predict")}
+                  className="h-12 mb-2 "
+                >
+                  {" "}
+                  <Link className="flex items-center  gap-3" href="/predict">
+                    <MdQueryStats className="w-5 h-5" />
+                    <div>
+                      <div>Predict</div>
+                    </div>{" "}
+                  </Link>
+                </SidebarMenuButton>
+
+                <SidebarMenuSub>
+                  <SidebarMenuSubItem>
+                    <SidebarMenuSubButton
+                      asChild
+                      isActive={pathname === "/predict/up-down"}
+                    >
+                      <Link href="/predict/up-down">
+                        <FaChartLine size={32} />
+                        Up or Down
+                      </Link>
+                    </SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+
+                  <SidebarMenuSubItem>
+                    <SidebarMenuSubButton
+                      asChild
+                      isActive={pathname === "/predict/whale-watch"}
+                    >
+                      <Link href="/predict/whale-watch">
+                        <GiWhaleTail size={32} />
+                        Whale Watch
+                      </Link>
+                    </SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+
+                  <SidebarMenuSubItem>
+                    <SidebarMenuSubButton
+                      asChild
+                      isActive={pathname === "/predict/gas-gambit"}
+                    >
+                      <Link href="/predict/gas-gambit">
+                        <GiPoisonGas size={32} className="text-primary" />
+                        Gas Gambit
+                      </Link>
+                    </SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+
+                  <SidebarMenuSubItem>
+                    <SidebarMenuSubButton
+                      asChild
+                      isActive={pathname === "/predict/token-war"}
+                    >
+                      <Link href="/predict/token-war">
+                        <MdToken size={32} className="text-primary" />
+                        Token War
+                      </Link>
+                    </SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+                </SidebarMenuSub>
+              </SidebarMenuItem>
+
+              {/* Other items */}
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname === "/dashboard"}
+                  className="h-12 mb-2"
+                >
+                  <Link href="/dashboard" className="flex items-center gap-3">
+                    <MdDashboard className="w-5 h-5" />
+                    <div>
+                      <div>Dashboard</div>
+                      <div className="text-xs text-white/50 hidden">
+                        View performance
                       </div>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+                    </div>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname === "/settings"}
+                  className="h-12 mb-2"
+                >
+                  <Link href="/settings" className="flex items-center gap-3">
+                    <MdSettings className="w-5 h-5" />
+                    <div>
+                      <div>Settings</div>
+                      <div className="text-xs text-white/50 hidden">
+                        Preferences
+                      </div>
+                    </div>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

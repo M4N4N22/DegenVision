@@ -33,7 +33,7 @@ const DashboardView = () => {
             </div>
           </div>
           <div>
-            <div className="text-center py-8 text-gray-400">
+            <div className="text-center py-8 text-white/50">
               <div className="text-2xl font-bold">🔥</div>
               <p className="text-sm">Streak tracking coming soon</p>
             </div>
@@ -48,7 +48,7 @@ const DashboardView = () => {
             </div>
           </div>
           <div>
-            <div className="text-center py-8 text-gray-400">
+            <div className="text-center py-8 text-white/50">
               <div className="text-2xl font-bold">🏆</div>
               <p className="text-sm">Achievement badges coming soon</p>
             </div>
@@ -63,7 +63,7 @@ const DashboardView = () => {
             </div>
           </div>
           <div>
-            <div className="text-center py-8 text-gray-400">
+            <div className="text-center py-8 text-white/50">
               <div className="text-2xl font-bold">📊</div>
               <p className="text-sm">Global rankings coming soon</p>
             </div>

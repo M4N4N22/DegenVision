@@ -7,7 +7,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/AppSidebar"
-import { ConnectButton } from '@rainbow-me/rainbowkit' // import ConnectButton
+
 
 interface MainLayoutProps {
   children: ReactNode
@@ -16,6 +16,7 @@ interface MainLayoutProps {
 export default function MainLayout({ children }: MainLayoutProps) {
   return (
     <SidebarProvider>
+      
       <div className="min-h-screen flex w-full">
         <AppSidebar />
         <SidebarInset className="flex-1 overflow-hidden">
@@ -26,11 +27,12 @@ export default function MainLayout({ children }: MainLayoutProps) {
             <div className="flex-1" />
 
             {/* Wallet connect button aligned right */}
-            <ConnectButton showBalance={false} />
+      
           </header>
 
           {/* Set height and scrolling context here */}
           <div className="h-[calc(100vh-4rem)] overflow-y-auto p-6">
+            
             {children}
           </div>
         </SidebarInset>

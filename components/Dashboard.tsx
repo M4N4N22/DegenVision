@@ -29,7 +29,7 @@ const Dashboard = () => {
 
           {/* Right: Sticky Prediction Panel */}
           <aside className="sticky top-24 self-start ">
-            <PredictionPanel />
+            <PredictionPanel cryptoName="eth" />
           </aside>
         </div>
 
