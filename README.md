@@ -100,3 +100,21 @@ Using **Nodit** not just for consumption but **for creation of game mechanics** 
 
 ## 📂 Project Structure
 
+/degenvision
+├── app/ # Next.js App Router (pages, layouts, routing)
+├── components/ # Reusable UI components (ShadCN + custom)
+├── config/ # App-wide configs (e.g., theme, constants)
+├── hooks/ # Custom React hooks (e.g., usePrediction)
+├── lib/ # Utility functions, Nodit API logic
+├── public/ # Static assets (e.g., images, icons)
+├── styles/ # Tailwind and global styles
+├── types/ # TypeScript type definitions
+├── nodit-mcp-listen.mjs # MCP model listener using Nodit
+├── components.json # ShadCN UI config
+├── next.config.mjs # Next.js configuration
+├── tailwind.config.js # TailwindCSS theme and setup
+├── eslint.config.js # ESLint config
+├── tsconfig.json # TypeScript config
+├── pnpm-lock.yaml # pnpm lock file
+├── package.json # Dependencies and scripts
+└── README.md # You're reading it!
