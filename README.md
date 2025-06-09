@@ -21,8 +21,8 @@ Harnessing the power of **Nodit’s live blockchain data streams** and its **Mod
 
 ## 🔗 Live Demo
 
-👉 [https://degenvision.com](https://degenvision.com)
-
+👉 [https://degen-vision.vercel.app](https://degen-vision.vercel.app)  
+🎥 [Watch Demo on YouTube](https://youtu.be/OjhgfhWQIBA?si=Eo2R5THuv66o6vqP)
 ---
 
 ## 🚀 Features
