@@ -1,65 +1,34 @@
-// app/predict/token-war/page.tsx
-import { FaFire } from "react-icons/fa"
-import { MdOutlineLockClock, MdToken } from "react-icons/md"
-import { SiNodedotjs } from "react-icons/si"
+import { MdToken } from "react-icons/md"
 
-export default function TokenWarComingSoon() {
+import TokenMarketPanelWrapper from "@/components/TokenMarketPanelWrapper"
+import TokenWarGame from "@/components/TokenWarGame"
+
+export default function TokenWarPage() {
   return (
-    <div className="max-w-3xl mx-auto p-4 text-white">
-      <div className="flex items-center gap-2 text-primary text-xl font-semibold mb-4">
-        <MdToken />
-        <span>Coming Soon</span>
-      </div>
-
-      <h1 className="text-4xl font-bold mb-6 text-primary">Token War</h1>
-
-      <p className="text-lg text-white/70 mb-8">
-        Predict which token will dominate net inflows on-chain. Track the pulse
-        of smart money in real-time. Welcome to{" "}
-        <span className="text-white font-semibold">Token War</span> — a
-        fast-paced, data-powered game where intuition meets strategy.
-      </p>
-
-      <div className="bg-muted/20 border border-muted rounded-2xl p-6 space-y-4 mb-10">
-        <h2 className="text-xl font-semibold text-white">🎯 How It Works</h2>
-        <ul className="list-disc pl-6 space-y-2 text-white/70">
-          <li>Every round, we track the top 5 tokens on Ethereum.</li>
-          <li>
-            You pick the token you think will have the highest net inflow
-            (buying pressure) during the round.
-          </li>
-          <li>
-            If your prediction is right, you win multipliers based on
-            difficulty.
-          </li>
-        </ul>
-      </div>
-
-      <div className="bg-muted/20 border border-muted rounded-2xl p-6 space-y-4 mb-10">
-        <h2 className="text-xl font-semibold text-white flex items-center gap-2">
-          <SiNodedotjs className="text-primary" />
-          Powered by Nodit
-        </h2>
-        <p className="text-white/70">
-          We use{" "}
-          <span className="text-white font-medium">
-            Nodit's TOKEN_TRANSFER and ADDRESS_ACTIVITY
-          </span>{" "}
-          streams to capture real-time ERC-20 token flow across the Ethereum
-          network. This lets us analyze where capital is flowing — live.
-        </p>
-        <p className="text-white/70">
-          Powered by Nodit MCP, our AI models add predictive AI to help power
-          insights for pro players.
+    <div className="min-h-screen bg-background p-6 flex flex-col gap-8">
+      {/* Top Center Title */}
+      <div className="w-full flex flex-col items-center text-center gap-2">
+        <h1 className="text-5xl font-bold tracking-tight flex items-center gap-3">
+          <MdToken className="text-primary text-6xl" />
+          Token War
+        </h1>
+        <p className="text-white/70 text-sm ">
+          Four tokens enter, one walks out pumped. Pick your fighter, read the
+          intel, and let the market decide who reigns.
         </p>
       </div>
 
-      <div className="text-center text-muted-foreground">
-        <MdOutlineLockClock className="mx-auto text-4xl text-muted mb-2" />
-        <p className="text-lg">
-          Token War launches soon. Watch the flow. Predict the trend. Win the
-          war.
-        </p>
+      {/* Main Content: Left = Game | Right = Intel Panel */}
+      <div className="flex flex-col md:flex-row gap-6 w-full items-start mt-8  rounded-xl divide-x divide-white/10">
+        {/* Left: Game */}
+        <div className="w-full md:w-1/2 ">
+          <TokenMarketPanelWrapper />
+        </div>
+        <div className="w-full md:w-1/2">
+          <TokenWarGame />
+        </div>
+
+        {/* Right: Token Intel Panel */}
       </div>
     </div>
   )

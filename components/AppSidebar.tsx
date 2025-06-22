@@ -2,156 +2,118 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { FaChartLine } from "react-icons/fa"
-import { GiPoisonGas, GiWhaleTail } from "react-icons/gi"
+import { cn } from "@/lib/utils"
+import {
+  FaChartLine,
+} from "react-icons/fa"
+import {
+  GiPoisonGas,
+  GiWhaleTail,
+} from "react-icons/gi"
 import {
   MdDashboard,
-  MdDynamicFeed,
   MdQueryStats,
   MdSettings,
   MdToken,
 } from "react-icons/md"
 
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible"
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
-} from "@/components/ui/sidebar"
+const predictChildren = [
+  {
+    label: "Up or Down",
+    href: "/predict/up-down",
+    icon: <FaChartLine size={16} />,
+  },
+  {
+    label: "Whale Watch",
+    href: "/predict/whale-watch",
+    icon: <GiWhaleTail size={16} />,
+  },
+  {
+    label: "Gas Gambit",
+    href: "/predict/gas-gambit",
+    icon: <GiPoisonGas size={16} />,
+  },
+  {
+    label: "Token War",
+    href: "/predict/token-war",
+    icon: <MdToken size={16} />,
+  },
+]
 
-export function AppSidebar() {
+export function AppTopNav() {
   const pathname = usePathname()
 
+  const isActive = (href: string) => pathname === href
+
   return (
-    <Sidebar>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel className="text-4xl tracking-tighter font-extrabold text-emerald-500 mb-4 h-fit leading-none py-8 flex flex-col">
-            <span>DEGEN</span>
-            <span className="text-white">VISION</span>
-          </SidebarGroupLabel>
+    <div className="w-full fixed top-0 z-50 bg-background/50 backdrop-blur-xl text-white border-b border-zinc-800 shadow-lg shadow-black/30">
+      <div className="max-w-screen-2xl mx-auto flex items-center px-4 py-3 gap-6">
+        {/* Logo */}
+        <div className="text-2xl font-extrabold tracking-tight text-emerald-500 mr-4">
+          <span>DEGEN</span>
+          <span className="text-white ml-1">VISION</span>
+        </div>
 
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {/* Collapsible PREDICT section */}
+        {/* Predict (Overview) */}
+        <Link
+          href="/predict"
+          className={cn(
+            "px-3 py-2 rounded-xl font-semibold transition-colors",
+            isActive("/predict")
+              ? "bg-primary text-black"
+              : "hover:bg-zinc-800 text-white/80"
+          )}
+        >
+          Overview
+        </Link>
 
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  isActive={pathname.startsWith("/predict")}
-                  className="h-12 mb-2 "
-                >
-                  {" "}
-                  <Link className="flex items-center  gap-3" href="/predict">
-                    <MdQueryStats className="w-5 h-5" />
-                    <div>
-                      <div>Predict</div>
-                    </div>{" "}
-                  </Link>
-                </SidebarMenuButton>
+        {/* Predict Children */}
+        {predictChildren.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={cn(
+              "flex items-center gap-1 px-3 py-2 rounded-xl transition-colors",
+              isActive(item.href)
+                ? "bg-primary text-black"
+                : "hover:bg-zinc-800 text-white/80"
+            )}
+          >
+            {item.icon}
+            {item.label}
+          </Link>
+        ))}
 
-                <SidebarMenuSub>
-                  <SidebarMenuSubItem>
-                    <SidebarMenuSubButton
-                      asChild
-                      isActive={pathname === "/predict/up-down"}
-                    >
-                      <Link href="/predict/up-down">
-                        <FaChartLine size={32} />
-                        Up or Down
-                      </Link>
-                    </SidebarMenuSubButton>
-                  </SidebarMenuSubItem>
+        {/* Dashboard */}
+        <Link
+          href="/dashboard"
+          className={cn(
+            "px-3 py-2 rounded-xl font-semibold transition-colors",
+            isActive("/dashboard")
+              ? "bg-primary text-black"
+              : "hover:bg-zinc-800 text-white/80"
+          )}
+        >
+          Dashboard
+        </Link>
 
-                  <SidebarMenuSubItem>
-                    <SidebarMenuSubButton
-                      asChild
-                      isActive={pathname === "/predict/whale-watch"}
-                    >
-                      <Link href="/predict/whale-watch">
-                        <GiWhaleTail size={32} />
-                        Whale Watch
-                      </Link>
-                    </SidebarMenuSubButton>
-                  </SidebarMenuSubItem>
+        {/* Spacer */}
+        <div className="flex-grow" />
 
-                  <SidebarMenuSubItem>
-                    <SidebarMenuSubButton
-                      asChild
-                      isActive={pathname === "/predict/gas-gambit"}
-                    >
-                      <Link href="/predict/gas-gambit">
-                        <GiPoisonGas size={32} className="text-primary" />
-                        Gas Gambit
-                      </Link>
-                    </SidebarMenuSubButton>
-                  </SidebarMenuSubItem>
-
-                  <SidebarMenuSubItem>
-                    <SidebarMenuSubButton
-                      asChild
-                      isActive={pathname === "/predict/token-war"}
-                    >
-                      <Link href="/predict/token-war">
-                        <MdToken size={32} className="text-primary" />
-                        Token War
-                      </Link>
-                    </SidebarMenuSubButton>
-                  </SidebarMenuSubItem>
-                </SidebarMenuSub>
-              </SidebarMenuItem>
-
-              {/* Other items */}
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  asChild
-                  isActive={pathname === "/dashboard"}
-                  className="h-12 mb-2"
-                >
-                  <Link href="/dashboard" className="flex items-center gap-3">
-                    <MdDashboard className="w-5 h-5" />
-                    <div>
-                      <div>Dashboard</div>
-                      <div className="text-xs text-white/50 hidden">
-                        View performance
-                      </div>
-                    </div>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  asChild
-                  isActive={pathname === "/settings"}
-                  className="h-12 mb-2"
-                >
-                  <Link href="/settings" className="flex items-center gap-3">
-                    <MdSettings className="w-5 h-5" />
-                    <div>
-                      <div>Settings</div>
-                      <div className="text-xs text-white/50 hidden">
-                        Preferences
-                      </div>
-                    </div>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-    </Sidebar>
+        {/* Settings */}
+        <Link
+          href="/settings"
+          className={cn(
+            "flex items-center gap-1 px-3 py-2 rounded-xl transition-colors",
+            isActive("/settings")
+              ? "bg-primary text-black"
+              : "hover:bg-zinc-800 text-white/80"
+          )}
+        >
+          <MdSettings size={18} />
+          Settings
+        </Link>
+      </div>
+    </div>
   )
 }
