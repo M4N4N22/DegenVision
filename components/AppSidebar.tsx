@@ -2,20 +2,11 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { FaChartLine } from "react-icons/fa"
+import { GiPoisonGas, GiWhaleTail } from "react-icons/gi"
+import { MdDashboard, MdQueryStats, MdSettings, MdToken } from "react-icons/md"
+
 import { cn } from "@/lib/utils"
-import {
-  FaChartLine,
-} from "react-icons/fa"
-import {
-  GiPoisonGas,
-  GiWhaleTail,
-} from "react-icons/gi"
-import {
-  MdDashboard,
-  MdQueryStats,
-  MdSettings,
-  MdToken,
-} from "react-icons/md"
 
 const predictChildren = [
   {
@@ -83,6 +74,19 @@ export function AppTopNav() {
             {item.label}
           </Link>
         ))}
+
+        {/* Dashboard */}
+        <Link
+          href="/nerds"
+          className={cn(
+            "px-3 py-2 rounded-xl font-semibold transition-colors",
+            isActive("/nerds")
+              ? "bg-primary text-black"
+              : "hover:bg-zinc-800 text-white/80"
+          )}
+        >
+          For Nerds
+        </Link>
 
         {/* Dashboard */}
         <Link
