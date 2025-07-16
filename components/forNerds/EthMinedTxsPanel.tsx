@@ -1,46 +1,69 @@
-"use client"
-
 import { useMemo, useState } from "react"
-import { shorten } from "@/lib/utils"
+import { format } from "date-fns"
+
+import { shorten } from "@/lib/utils" // or your own helper for shortening hashes
 
 export default function EthMinedTxsPanel({ logs }: { logs: any[] }) {
   const [expanded, setExpanded] = useState(false)
 
   const minedLogs = useMemo(() => {
-    return logs
-      .filter((log) => log.type === "mined_transaction" && log.formatted?.length)
-      .flatMap((log) => log.formatted)
-      .slice(-10)
-      .reverse()
+    const flatLogs = Array.isArray(logs[0]) ? logs.flat() : logs
+    console.log("🧠 Flattened logs:", flatLogs)
+  
+    const filteredLogs = flatLogs.filter(
+      (log) =>
+        log.source === "webhook" &&
+      log.raw?.eventType === "MINED_TRANSACTION" &&
+        Array.isArray(log.raw?.event?.messages)
+    )
+  
+    const parsed = filteredLogs.flatMap((log) =>
+      log.raw.event.messages.map((msg: any) => ({
+        from: msg.from_address,
+        to: msg.to_address,
+        hash: msg.hash,
+        block: msg.block_number,
+        timestamp: new Date(msg.block_timestamp * 1000).toLocaleString(),
+        value: parseInt(msg.value, 16) / 1e18,
+        gasUsed: msg.receipt_gas_used,
+        status: msg.receipt_status === 1 ? "Success" : "Failed",
+      }))
+    )
+  
+    console.log("✅ Parsed mined logs:", parsed)
+    return parsed.slice(-10).reverse()
   }, [logs])
+  
 
   const visibleLogs = expanded ? minedLogs : minedLogs.slice(-1)
 
   return (
-    <div className="bg-zinc-900 rounded-2xl p-5 border border-zinc-800 shadow-sm">
-      <div className="text-lg font-bold text-yellow-400 mb-2">
-        Ethereum – Mined Transactions
-      </div>
+    <div className="bg-zinc-900 rounded-2xl p-2  shadow-sm">
+     <div className="flex justify-between p-4">
+        <div className="text-lg font-bold  ">Mined Transactions</div>
 
-      <button
-        className="text-sm text-blue-400 underline mb-3"
-        onClick={() => setExpanded((e) => !e)}
-      >
-        {expanded ? "Hide Recent" : "Show Last 10"}
-      </button>
+        <button
+          className="text-sm bg-primary text-black font-semibold px-3 py-0.5 rounded-full transition-all"
+          onClick={() => setExpanded((e) => !e)}
+        >
+          {expanded ? "Hide Last 10" : "Show Last 10"}
+        </button>
+      </div>
 
       <div className="space-y-3">
         {visibleLogs.map((msg: any, idx: number) => (
           <div
             key={msg.hash + idx}
-            className="bg-black rounded-lg p-3 text-sm space-y-1"
+            className="bg-black rounded-xl p-6  space-y-2 "
           >
-            <div className="text-green-400 font-semibold">⛏️ Mined Transaction</div>
-            <div>
-              <span className="text-zinc-400">From:</span> {msg.from}
+            <div className="text-primary font-semibold">
+            Mined Transaction
             </div>
             <div>
-              <span className="text-zinc-400">To:</span> {msg.to}
+              <span className="text-zinc-400">From:</span> {shorten(msg.from)}
+            </div>
+            <div>
+              <span className="text-zinc-400">To:</span> {shorten(msg.to)}
             </div>
             <div>
               <span className="text-zinc-400">Value:</span> {msg.value} ETH
@@ -52,7 +75,7 @@ export default function EthMinedTxsPanel({ logs }: { logs: any[] }) {
               <span className="text-zinc-400">Status:</span> {msg.status}
             </div>
             <div className="text-zinc-500 text-xs">
-              Tx: {msg.hash} | Block: {msg.block}
+              Tx: {shorten(msg.hash)} | Block: {msg.block}
               <br />
               {msg.timestamp}
             </div>

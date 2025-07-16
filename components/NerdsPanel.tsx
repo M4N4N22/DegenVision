@@ -1,9 +1,10 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
-import EthTransfersPanel from "./forNerds/EthTransfersPanel"
+import { useEffect, useRef, useState } from "react"
+
 import EthAddressActivityPanel from "./forNerds/EthAddressActivityPanel"
 import EthMinedTxsPanel from "./forNerds/EthMinedTxsPanel"
+import EthTransfersPanel from "./forNerds/EthTransfersPanel"
 
 export default function NerdsPanel() {
   const [logs, setLogs] = useState<any[]>([])
@@ -17,6 +18,7 @@ export default function NerdsPanel() {
 
     eventSource.onmessage = (event) => {
       const parsed = JSON.parse(event.data)
+      //console.log("🧩 Parsed data:", parsed)
 
       const msgHash =
         parsed.raw?.event?.messages?.[0]?.transaction_hash ??
@@ -39,11 +41,29 @@ export default function NerdsPanel() {
 
   return (
     <div className="p-6 space-y-4">
-      <h1 className="text-2xl font-bold text-yellow-300">
-        Nodit Dashboard – Live Webhook Events
-      </h1>
+      <span className="text-yellow-300">
+        Events are paused in production to save credits
+      </span>
+      <div className="flex justify-between  items-end">
+        <div className="space-y-4">
+          <h1 className="text-2xl font-bold">
+            <span className="text-primary">Nodit</span> Dashboard For Nerds{" "}
+            <br />
+            <span className="text-white/70 font-semibold text-lg">
+            Whale Moves on Chain, As They Happen
+            </span>
+          </h1>
+        </div>
+        <div className="text-sm text-white/70 font-medium  text-right">
+          Currently showing live <span className="text-white">Ethereum</span>{" "}
+          Mainnet events. <br />
+          <span className="text-white/60">
+            Other chain support and AI insights coming soon.
+          </span>
+        </div>
+      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 items-start">
         <EthTransfersPanel logs={logs} />
         <EthAddressActivityPanel logs={logs} />
         <EthMinedTxsPanel logs={logs} />
