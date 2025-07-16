@@ -85,14 +85,14 @@ export function AppTopNav() {
               : "hover:bg-zinc-800 text-white/80"
           )}
         >
-          For Nerds
+          Dashboard For Nerds
         </Link>
 
         {/* Dashboard */}
         <Link
           href="/dashboard"
           className={cn(
-            "px-3 py-2 rounded-xl font-semibold transition-colors",
+            "px-3 py-2 rounded-xl font-semibold transition-colors hidden",
             isActive("/dashboard")
               ? "bg-primary text-black"
               : "hover:bg-zinc-800 text-white/80"
@@ -108,7 +108,7 @@ export function AppTopNav() {
         <Link
           href="/settings"
           className={cn(
-            "flex items-center gap-1 px-3 py-2 rounded-xl transition-colors",
+            " items-center gap-1 px-3 py-2 rounded-xl transition-colors hidden",
             isActive("/settings")
               ? "bg-primary text-black"
               : "hover:bg-zinc-800 text-white/80"

@@ -1,4 +1,4 @@
-// 📁 nodit/index.mjs
+// nodit/index.mjs
 import 'dotenv/config'
 import { startMCP } from "./mcp/client.mjs"
 import { listApiCategories } from "./mcp/calls/listApis.mjs"
