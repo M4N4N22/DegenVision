@@ -3,8 +3,8 @@ import 'dotenv/config'
 import { startMCP } from "./mcp/client.mjs"
 import { listApiCategories } from "./mcp/calls/listApis.mjs"
 import { getEthGetLogsSpec } from "./mcp/calls/getSpec.mjs"
-import { callEthGetLogs } from "./mcp/calls/callEthGetLogs.mjs"
-import { callEthCall } from "./mcp/calls/callEthCall.mjs"
+import { callEthGetLogs } from "./mcp/calls/callEthGetLogs.js"
+import { callEthCall } from "./mcp/calls/callEthCall.js"
 import { trackNerdLog } from '../shared/nerdlog.mjs'
 
 let state = 0
