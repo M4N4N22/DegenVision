@@ -47,11 +47,10 @@ export default function NerdsPanel() {
       <div className="flex justify-between  items-end">
         <div className="space-y-4">
           <h1 className="text-2xl font-bold">
-            <span className="text-primary">Nodit</span> Dashboard For Nerds{" "}
+            <span className="text-primary">Nodit</span> Dashboard{" "}
+            <span className="text-lg text-white/50 font-normal">Powered by Nodit Webhook</span>
             <br />
-            <span className="text-white/70 font-semibold text-lg">
-            Whale Moves on Chain, As They Happen
-            </span>
+           
           </h1>
         </div>
         <div className="text-sm text-white/70 font-medium  text-right">
