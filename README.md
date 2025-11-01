@@ -1,21 +1,17 @@
 # DegenVision
 
 Leverage real-time on-chain wallet activity and AI-powered insights to make strategic predictions.  
-Test your foresight against the market and climb the leaderboard.
+Test your foresight against the market and climb the leaderboard — powered by **Linera** microchains for true real-time decentralization.
 
-
+---
 
 ## 🎯 Overview
 
-**DegenVision** is a real-time, prediction-based web application built during a hackathon with a mission to **gamify on-chain activity** and provide **AI-powered market foresight**.
+**DegenVision** is a **real-time decentralized prediction platform** built on **Linera**, designed for the new era of instant microsettlements and parallel markets.
 
-Harnessing the power of **Nodit’s live blockchain data streams** and its **Model Context Protocol (MCP)**, DegenVision creates a unique engagement loop where users can:
-- Watch live wallet and token movements
-- Predict the outcomes of short-term on-chain events
-- Compete on a global leaderboard
-- Earn recognition for accuracy and speed
+It enables users to predict outcomes on **live blockchain data** — such as price movements, gas usage, whale activity, and token inflows — and earn **instant on-chain rewards** when their predictions are correct. Each prediction market runs independently on **Linera microchains**, allowing hundreds of live markets to exist simultaneously without congestion or gas spikes.
 
-> ⚙️ Built with Next.js 14 App Router + TypeScript + WebSockets + Nodit + TailwindCSS
+> ⚙️ Built with Next.js 14 + TypeScript + WebSockets + Linera + Nodit + TailwindCSS
 
 ---
 
@@ -23,6 +19,7 @@ Harnessing the power of **Nodit’s live blockchain data streams** and its **Mod
 
 👉 [https://degen-vision.vercel.app](https://degen-vision.vercel.app)  
 🎥 [Watch Demo on YouTube](https://youtu.be/OjhgfhWQIBA?si=Eo2R5THuv66o6vqP)
+
 ---
 
 ## 🚀 Features
@@ -30,36 +27,41 @@ Harnessing the power of **Nodit’s live blockchain data streams** and its **Mod
 ### ✅ Live Now (Wave 1)
 | Game | Description |
 |------|-------------|
-| **📈 ETH Up or Down** | Predict whether ETH price will go up or down. Choose your timeframe from 30 seconds to 1 hour. |
-| **🐋 Whale Watch** | Predict the sum of the next 10 large USDT whale transactions (≥ 2,000 USDT). Choose your range and win multipliers if your guess is right! |
+| **📈 ETH Up or Down** | Predict whether ETH price will go up or down within 30 seconds to 1 hour. Instant resolution on-chain. |
+| **🐋 Whale Watch** | Predict the total size of the next 10 large USDT whale transactions (≥ 2,000 USDT). Earn multipliers for accuracy! |
 
 ### ⏳ Coming Soon (Wave 2)
 | Game | Description |
 |------|-------------|
-| **⛽ Gas Gambit** | Predict Ethereum network congestion by estimating gas usage in upcoming blocks. Test your mempool intuition. |
-| **🪙 Token War** | Predict which token will dominate net inflows or outflows. Stay ahead of shifts in market sentiment. |
+| **⛽ Gas Gambit** | Forecast upcoming Ethereum block congestion by estimating gas usage. |
+| **🪙 Token War** | Predict which token will dominate net inflows or outflows in the next window. |
+| **⚔️ Multi-Market View** | Track multiple live predictions and markets across categories at once. |
 
 ---
 
-## 💡 Powered by Nodit in a Fresh Way
+## 💡 Powered by Linera + Nodit
 
-DegenVision is not just another prediction game — it redefines Web3 engagement by combining **data**, **intelligence**, and **interactivity**:
+DegenVision merges **Linera’s scalable microchain architecture** with **Nodit’s real-time blockchain data** to create prediction markets that feel as fast as Web2 but settle entirely on-chain.
 
-### 🔍 Real-Time Streams  
-Utilizing **Nodit Streams API**, we subscribe to **Ethereum's live transaction flow**, including whale movements and token transfers.
+### 🧱 Linera Microchains  
+Each prediction market operates on its own **independent microchain**, offering:
+- Instant execution and local finality  
+- Zero congestion across markets  
+- Scalable parallel market creation  
+- True real-time experience for sub-minute predictions  
 
-### 🧠 AI-Powered Predictions  
-With **Nodit's Model Context Protocol (MCP)**, predictions aren't blind guesses. We build smart predictions powered by:
-- Market context and wallet behavior
-- Gas trends and network load
-- Token flow dynamics
+### 🔍 Real-Time Data Streams (Nodit)  
+Using **Nodit Streams API**, DegenVision tracks:
+- Whale transactions  
+- Token inflows/outflows  
+- Network gas congestion  
+- Market volatility and sentiment
 
-### 🧩 Modular, Server-Side Intelligence  
-The app connects to a **custom backend** that:
-- Subscribes to Nodit WebSocket feeds
-- Processes and filters transaction types (e.g. native ETH, stablecoin whales)
-- Interfaces with MCP to get prediction context
-- Exposes APIs to the frontend for live rendering and prediction handling
+### 🧠 AI Context via MCP  
+Through **Nodit’s Model Context Protocol (MCP)**, DegenVision enriches predictions with:
+- Market context and wallet activity  
+- Gas and mempool behavior  
+- Token flow dynamics for enhanced foresight  
 
 ---
 
@@ -67,71 +69,82 @@ The app connects to a **custom backend** that:
 
 | Tech | Usage |
 |------|-------|
-| **Next.js 14 (App Router)** | Full-stack React app with Server Actions |
-| **TailwindCSS + ShadCN** | UI components and styling |
-| **Nodit Streams + MCP** | Real-time chain data + prediction context |
-| **WebSockets** | Live updates for leaderboard and data stream |
-| **PostgreSQL + Prisma** | User and prediction data storage |
-| **Node.js API Routes** | Server-side processing of chain events |
+| **Linera Protocol** | Parallel microchains for independent prediction markets |
+| **Next.js 14 (App Router)** | Frontend + backend routes |
+| **TailwindCSS + ShadCN** | Reactive UI components |
+| **Nodit Streams + MCP** | Blockchain data feeds + contextual AI |
+| **WebSockets** | Real-time odds and leaderboard updates |
+| **Redis + BullMQ** | Off-chain event queueing and data sync |
+| **TypeScript** | Type safety across app logic |
 
 ---
 
-## 🧪 How It Works
+## ⚙️ Architecture
 
-1. **Users choose a game** (e.g., ETH price prediction)
-2. **Live on-chain data** is streamed from Nodit to our server
-3. Users make a prediction → our backend evaluates it against **real-time data**
-4. The result is stored and shown live on leaderboard with win/loss status
+1. Each **prediction market** (e.g., “ETH Up or Down”) is a **Linera microchain**.
+2. The **coordinator system** manages active markets, pushes live updates via WebSockets, and triggers instant settlements.
+3. **Blockchain streams** from Nodit feed live data into each market instance.
+4. Predictions are submitted → validated → instantly resolved on their microchain.
+5. Payouts occur automatically without global congestion.
+
+This architecture ensures sub-second updates and fair, verifiable outcomes for every prediction event.
 
 ---
 
 ## 🎮 Why DegenVision?
 
-Web3 is flooded with passive tools and dashboards. **We turn data into gameplay**.  
-Using **Nodit** not just for consumption but **for creation of game mechanics** around real on-chain events brings:
+Current prediction markets are slow, congested, and unscalable.  
+**DegenVision** changes that by merging **parallel on-chain computation (Linera)** with **real-time data streaming (Nodit)** — creating a new class of **live, decentralized prediction experiences**.
 
-- **More Web3 engagement**
-- **Smarter user predictions**
-- **A natural feedback loop between wallet activity and human intuition**
+- **Instant market resolution** — no block delays  
+- **Independent scalability** — thousands of live markets  
+- **AI-driven foresight** — context-aware predictions  
+- **Verifiable outcomes** — transparent on-chain results  
 
-> 📈 Whether you're a trader, degen, or builder — DegenVision makes real-time crypto thrilling and rewarding.
+> 💡 DegenVision is what happens when you combine **DeFi speed**, **AI intelligence**, and **Web3 composability** into one real-time experience.
 
 ---
 
 ## 📂 Project Structure
 
+
+
 ```
 /degenvision
-├── app/                   # Next.js App Router (pages, layouts, routing)
-├── components/            # Reusable UI components (ShadCN + custom)
-├── config/                # App-wide configs (e.g., theme, constants)
-├── hooks/                 # Custom React hooks (e.g., usePrediction)
-├── lib/                   # Utility functions, Nodit API logic
-├── public/                # Static assets (e.g., images, icons)
-├── styles/                # Tailwind and global styles
-├── types/                 # TypeScript type definitions
-├── nodit-mcp-listen.mjs   # MCP model listener using Nodit
-├── components.json        # ShadCN UI config
-├── next.config.mjs        # Next.js configuration
-├── tailwind.config.js     # TailwindCSS theme and setup
-├── eslint.config.js       # ESLint config
-├── tsconfig.json          # TypeScript config
-├── pnpm-lock.yaml         # pnpm lock file
-├── package.json           # Dependencies and scripts
-└── README.md              # You're reading it!
+├── app/ # Next.js App Router (layouts, routes)
+├── components/ # Reusable ShadCN + custom UI components
+├── config/ # Global app config
+├── hooks/ # Custom React hooks (usePrediction, etc.)
+├── lib/ # Utility + Linera + Nodit integration logic
+├── public/ # Static assets (logos, icons)
+├── styles/ # Tailwind and global styles
+├── types/ # TypeScript types
+├── ws/ # WebSocket + market coordinator
+├── nodit-mcp-listen.mjs # MCP model listener for AI enrichment
+├── package.json # Dependencies and scripts
+└── README.md # You’re reading it!
 ```
 ---
 
-## 🛠️ Tech Stack
-
-| Tech        | Purpose                              |
-|-------------|--------------------------------------|
-| **Next.js** | App framework with App Router        |
-| **TailwindCSS + ShadCN** | Design system & UI     |
-| **Nodit Streams API** | Live blockchain insights   |
-| **Nodit MCP** | AI + market context enrichment     |
-| **TypeScript** | Strong types across the codebase |
-| **WebSocket** | Real-time data communication       |
-| **pnpm**     | Package management                  |
 
 ---
+
+## 🧩 What’s Next
+
+- 🔗 Complete **Linera smart contract integration** for live settlement  
+- 🧠 Expand into **sports**, **politics**, **weather**, and **AI inference** predictions  
+- 🧰 Launch **creator tools** for user-generated markets  
+- 🖥️ Build **multi-market dashboards** with live filtering and tracking  
+- 🧬 Evolve into the **universal real-time prediction layer** for Web3  
+
+---
+
+## 🏁 Summary
+
+**DegenVision** showcases what **Linera** makes possible — **real-time, parallel, low-latency decentralized applications** that combine **AI, data, and on-chain logic** to bring the excitement of live speculation to the blockchain.
+
+> 🔮 “Real-time markets. Real data. Real ownership.”  
+> DegenVision — the future of decentralized predictions.
+
+---
+
