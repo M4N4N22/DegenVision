@@ -3,6 +3,10 @@
 Leverage real-time on-chain wallet activity and AI-powered insights to make strategic predictions.  
 Test your foresight against the market and climb the leaderboard — powered by **Linera** microchains for true real-time decentralization.
 
+> ⚠️ **Note:** Linera integration is currently in progress.  
+> The current version of DegenVision (this repo) uses **Nodit Streams** and **MCP** for real-time blockchain data and prediction simulation.  
+> Once Linera integration is complete, all prediction markets will run natively on **Linera microchains** for on-chain resolution and instant settlement.
+
 ---
 
 ## 🎯 Overview
